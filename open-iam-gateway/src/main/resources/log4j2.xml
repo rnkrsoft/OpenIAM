@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- monitorInterval动态检测配置文件变更 -->
+<configuration status="WARN"  monitorInterval="1800">
+    <Properties>
+        <Property name="FILE_SIZE">300M</Property>
+        <Property name="LOG_PATTERN">%d{yyyy-MM-dd HH:mm:ss} sessionId[%X{sessionId}] [%thread] %-5level %logger{36} - %msg%n</Property>
+        <Property name="rolling_file_name">-%d{yyyy-MM-dd}.%i.zip</Property>
+        <Property name="rollover_strategy_max">30</Property>
+        <property name="LOG_HOME">./target</property>
+    </Properties>
+    <appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+        </Console>
+    </appenders>
+
+    <loggers>
+        <AsyncRoot level="debug">
+            <appender-ref ref="Console"/>
+        </AsyncRoot>
+        <!--
+            additivity开启的话，由于这个logger也是满足root的，所以会被打印两遍。
+            -->
+        <logger name="com.rnkrsoft" level="debug" additivity="false">
+            <appender-ref ref="Console"/>
+        </logger>
+        <logger name="org.springframework" level="info" additivity="false">
+            <appender-ref ref="Console"/>
+        </logger>
+        <logger name="log4jdbc" level="debug" additivity="false">
+            <appender-ref ref="Console"/>
+        </logger>
+        <logger name="jdbc.audit" level="off" additivity="false">
+            <appender-ref ref="Console"/>
+        </logger>
+        <logger name="jdbc.sqlonly" level="off" additivity="false">
+            <appender-ref ref="Console"/>
+        </logger>
+        <logger name="jdbc.sqltiming" level="debug" additivity="false">
+            <appender-ref ref="Console"/>
+        </logger>
+        <logger name="jdbc.connection" level="off" additivity="false">
+            <appender-ref ref="Console"/>
+        </logger>
+        <logger name="jdbc.resultset" level="off" additivity="false">
+            <appender-ref ref="Console"/>
+        </logger>
+        <logger name="jdbc.resultsettable" level="debug" additivity="false">
+            <appender-ref ref="Console"/>
+        </logger>
+    </loggers>
+</configuration>

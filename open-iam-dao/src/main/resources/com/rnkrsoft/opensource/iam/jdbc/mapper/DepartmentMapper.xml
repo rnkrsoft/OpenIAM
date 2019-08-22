@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.rnkrsoft.opensource.iam.jdbc.dao.DepartmentDAO" >
+    <resultMap id="BaseResultMap" type="com.rnkrsoft.opensource.iam.jdbc.entity.DepartmentEntity">
+        <!-- 部门主键 -->
+        <id column="DEPARTMENT_ID" property="departmentId" jdbcType="INTEGER" />
+        <!-- 部门名称 -->
+        <result column="DEPARTMENT_NAME" property="departmentName" jdbcType="VARCHAR" />
+        <!-- 分支机构主键 -->
+        <result column="BRANCH_ID" property="branchId" jdbcType="VARCHAR" />
+        <!-- 状态 0:禁用  1:启用   -->
+        <result column="DEPARTMENT_STATUS" property="departmentStatus" jdbcType="INTEGER" />
+        <!-- 创建日期 -->
+        <result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" />
+        <!-- 更新日期 -->
+        <result column="LAST_UPDATE_DATE" property="lastUpdateDate" jdbcType="TIMESTAMP" />
+    </resultMap>
+
+    <resultMap id="queryDepartmentResultMap" type="com.rnkrsoft.opensource.iam.jdbc.bo.QueryDepartmentBO">
+        <!-- 部门主键 -->
+        <id column="DEPARTMENT_ID" property="departmentId" jdbcType="INTEGER" />
+        <!-- 部门名称 -->
+        <result column="DEPARTMENT_NAME" property="departmentName" jdbcType="VARCHAR" />
+        <!-- 分支机构主键 -->
+        <result column="BRANCH_NAME" property="branchName" jdbcType="VARCHAR" />
+        <!-- 分支机构主键 -->
+        <result column="CITY_NAME" property="cityName" jdbcType="VARCHAR" />
+        <!-- 状态 0:禁用  1:启用   -->
+        <result column="DEPARTMENT_STATUS" property="departmentStatus" jdbcType="INTEGER" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        DEPARTMENT_ID, DEPARTMENT_NAME, BRANCH_ID, DEPARTMENT_STATUS, CREATE_DATE, LAST_UPDATE_DATE
+    </sql>
+
+    <select id="queryDepartment" resultMap="queryDepartmentResultMap">
+        SELECT T1.DEPARTMENT_ID, T1.DEPARTMENT_NAME,T1.DEPARTMENT_STATUS,T2.BRANCH_NAME,T3.CITY_NAME
+        FROM TB_DEPARTMENT_INFO T1
+        INNER JOIN TB_BRANCH_INFO T2 ON T1.BRANCH_ID= T2.BRANCH_ID
+        INNER JOIN TB_CITY_INFO T3 on T2.CITY_ID = T3.CITY_ID
+        <where>
+            <if test="params.branchId != null">
+                AND T1.BRANCH_ID = ${params.branchId}
+            </if>
+            <if test="params.cityId != null">
+                AND T2.CITY_ID = ${params.cityId}
+            </if>
+            <if test="params.departmentStatus != null">
+                AND T1.DEPARTMENT_STATUS = ${params.departmentStatus}
+            </if>
+        </where>
+    </select>
+
+
+    <select id="selectByUserId" resultMap="BaseResultMap">
+        SELECT
+        T1.DEPARTMENT_ID,
+        T1.DEPARTMENT_NAME,
+        T1.BRANCH_ID,
+        T1.DEPARTMENT_STATUS,
+        T1.CREATE_DATE,
+        T1.LAST_UPDATE_DATE
+        FROM TB_DEPARTMENT_INFO T1
+        INNER JOIN TB_USER_DEPARTMENT_MAPPING T2 ON T1.DEPARTMENT_ID = T2.DEPARTMENT_ID
+        WHERE T2.USER_ID = #{userId}
+    </select>
+</mapper>

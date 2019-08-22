@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.rnkrsoft.opensource.iam.jdbc.dao.UserJobDAO" >
+    <resultMap id="BaseResultMap" type="com.rnkrsoft.opensource.iam.jdbc.entity.UserJobEntity">
+        <!-- 物理主键 -->
+        <id column="MAPPING_ID" property="mappingId" jdbcType="INTEGER" />
+        <!-- 用户号 -->
+        <result column="USER_ID" property="userId" jdbcType="VARCHAR" />
+        <!-- 岗位编号 -->
+        <result column="JOB_ID" property="jobId" jdbcType="INTEGER" />
+        <!-- 创建日期 -->
+        <result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" />
+        <!-- 更新日期 -->
+        <result column="LAST_UPDATE_DATE" property="lastUpdateDate" jdbcType="TIMESTAMP" />
+    </resultMap>
+    <sql id="Base_Column_List" >
+        MAPPING_ID, USER_ID, JOB_ID, CREATE_DATE, LAST_UPDATE_DATE
+    </sql>
+</mapper>

@@ -1,0 +1,312 @@
+2019-08-22 20:45:11,785 sessionId[fe5e1c20-d136-4eae-9ec7-cc7dcf294630] [main] INFO set fallback setting, iam --> http://localhost:8001//api
+2019-08-22 20:45:11,977 sessionId[fe5e1c20-d136-4eae-9ec7-cc7dcf294630] [main] INFO set fallback setting, public --> http://localhost:8001//api
+2019-08-22 20:45:11,979 sessionId[fe5e1c20-d136-4eae-9ec7-cc7dcf294630] [main] DEBUG add service class interface com.rnkrsoft.opensource.iam.gateway.login.facade.LoginFacade
+2019-08-22 20:45:11,992 sessionId[fe5e1c20-d136-4eae-9ec7-cc7dcf294630] [main] DEBUG register interface com.rnkrsoft.opensource.iam.gateway.login.facade.LoginFacade.public abstract com.rnkrsoft.opensource.iam.gateway.login.domains.SmsLoginResponse com.rnkrsoft.opensource.iam.gateway.login.facade.LoginFacade.smsLogin(com.rnkrsoft.opensource.iam.gateway.login.domains.SmsLoginRequest)-->iam:101:1
+2019-08-22 20:45:11,993 sessionId[fe5e1c20-d136-4eae-9ec7-cc7dcf294630] [main] DEBUG register interface com.rnkrsoft.opensource.iam.gateway.login.facade.LoginFacade.public abstract com.rnkrsoft.opensource.iam.gateway.login.domains.BindLoginResponse com.rnkrsoft.opensource.iam.gateway.login.facade.LoginFacade.bindLogin(com.rnkrsoft.opensource.iam.gateway.login.domains.BindLoginRequest)-->iam:103:1
+2019-08-22 20:45:11,993 sessionId[fe5e1c20-d136-4eae-9ec7-cc7dcf294630] [main] DEBUG register interface com.rnkrsoft.opensource.iam.gateway.login.facade.LoginFacade.public abstract com.rnkrsoft.opensource.iam.gateway.login.domains.CheckUuidResponse com.rnkrsoft.opensource.iam.gateway.login.facade.LoginFacade.checkUuid(com.rnkrsoft.opensource.iam.gateway.login.domains.CheckUuidRequest)-->iam:102:1
+2019-08-22 20:45:12,025 sessionId[62f100e4-ded0-4af9-9c7a-445f45f31b71] [Java AsyncTask #1] INFO remote configure 'http://localhost:80/config' request json '{"uic":"2542563b-a153-48af-84d4-d40542c8bc3b","channels":["iam","public"],"deviceType":"Windows 10","appVersion":"4.0.0","lng":"1.0","lat":"2.0"}'!
+2019-08-22 20:45:13,163 sessionId[fe5e1c20-d136-4eae-9ec7-cc7dcf294630] [main] WARN 远程配置初始化失败, 启用本地配置
+2019-08-22 20:45:13,173 sessionId[83f9783d-0029-4b5a-af7b-dff91401c010] [main] DEBUG execute invoke method
+2019-08-22 20:45:13,177 sessionId[83f9783d-0029-4b5a-af7b-dff91401c010] [main] DEBUG asynchronous execute remote service request 'FetchPublishRequest(channels=[iam, public])'
+2019-08-22 20:45:13,186 sessionId[83f9783d-0029-4b5a-af7b-dff91401c010] [Java AsyncTask #2] DEBUG asynchronous call channel:'public' txNo:'000' version:1 
+2019-08-22 20:45:13,195 sessionId[83f9783d-0029-4b5a-af7b-dff91401c010] [Java AsyncTask #2] DEBUG asynchronous call ApiRequest:ApiRequest(channel=public, txNo=000, version=1, sessionId=83f9783d-0029-4b5a-af7b-dff91401c010, uid=null, uic=null, deviceManufacturer=null, deviceModel=null, macAddress=null, deviceType=null, osVersion=null, appVersion=null, data={"channels":["iam","public"]}, timestamp=20190822204513191, token=null, sign=null, lng=null, lat=null) 
+2019-08-22 20:45:13,202 sessionId[83f9783d-0029-4b5a-af7b-dff91401c010] [Java AsyncTask #2] DEBUG get Interface Connector class com.rnkrsoft.platform.client.connector.http.HttpInterfaceConnector
+2019-08-22 20:45:13,207 sessionId[83f9783d-0029-4b5a-af7b-dff91401c010] [Java AsyncTask #2] DEBUG enabled auto locate!
+2019-08-22 20:45:13,214 sessionId[83f9783d-0029-4b5a-af7b-dff91401c010] [Java AsyncTask #2] DEBUG call 'http://localhost:8001/api', request '{"channel":"public","txNo":"000","version":"1","sessionId":"83f9783d-0029-4b5a-af7b-dff91401c010","uid":"sssss","uic":"2542563b-a153-48af-84d4-d40542c8bc3b","deviceManufacturer":"PC","deviceModel":"amd64","macAddress":"44-45-53-54-00-00","deviceType":"Windows 10","osVersion":"10.0","appVersion":"4.0.0","data":"{\"channels\":[\"iam\",\"public\"]}","timestamp":"20190822204513191","token":"723d0876-e3e7-473f-a8d3-b4d2267a67e8","lng":1.0,"lat":2.0}' 
+2019-08-22 20:45:14,221 sessionId[83f9783d-0029-4b5a-af7b-dff91401c010] [Java AsyncTask #2] ERROR call 'http://localhost:8001/api', 接口平台网关未发现 
+message:Connection refused: connect
+	at java.net.DualStackPlainSocketImpl.waitForConnect(Native Method)
+	at java.net.DualStackPlainSocketImpl.socketConnect(DualStackPlainSocketImpl.java:85)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:172)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:589)
+	at sun.net.NetworkClient.doConnect(NetworkClient.java:175)
+	at sun.net.www.http.HttpClient.openServer(HttpClient.java:463)
+	at sun.net.www.http.HttpClient.openServer(HttpClient.java:558)
+	at sun.net.www.http.HttpClient.<init>(HttpClient.java:242)
+	at sun.net.www.http.HttpClient.New(HttpClient.java:339)
+	at sun.net.www.http.HttpClient.New(HttpClient.java:357)
+	at sun.net.www.protocol.http.HttpURLConnection.getNewHttpClient(HttpURLConnection.java:1220)
+	at sun.net.www.protocol.http.HttpURLConnection.plainConnect0(HttpURLConnection.java:1156)
+	at sun.net.www.protocol.http.HttpURLConnection.plainConnect(HttpURLConnection.java:1050)
+	at sun.net.www.protocol.http.HttpURLConnection.connect(HttpURLConnection.java:984)
+	at sun.net.www.protocol.http.HttpURLConnection.getOutputStream0(HttpURLConnection.java:1334)
+	at sun.net.www.protocol.http.HttpURLConnection.getOutputStream(HttpURLConnection.java:1309)
+	at com.rnkrsoft.platform.client.connector.http.HttpRequest.openOutput(HttpRequest.java:2610)
+	at com.rnkrsoft.platform.client.connector.http.HttpRequest.send(HttpRequest.java:2926)
+	at com.rnkrsoft.platform.client.connector.http.HttpInterfaceConnector.call0(HttpInterfaceConnector.java:283)
+	at com.rnkrsoft.platform.client.connector.http.HttpInterfaceConnector.call(HttpInterfaceConnector.java:372)
+	at com.rnkrsoft.platform.client.invoker.JavaAsyncInvoker.doInBackground(JavaAsyncInvoker.java:396)
+	at com.rnkrsoft.platform.client.invoker.JavaAsyncInvoker.doInBackground(JavaAsyncInvoker.java:230)
+	at com.rnkrsoft.platform.client.async.AsyncTask$1.call(AsyncTask.java:234)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+
+2019-08-22 20:45:14,226 sessionId[83f9783d-0029-4b5a-af7b-dff91401c010] [Java AsyncTask #2] DEBUG asynchronous call ApiResponse:ApiResponse(data=null, sign=null, updateMetadataTimestamp=0, updateConfigureTimestamp=0, code=034, desc=接口平台网关未发现) 
+2019-08-22 20:45:14,229 sessionId[83f9783d-0029-4b5a-af7b-dff91401c010] [Java AsyncTask #2] DEBUG asynchronous execute remote service response 'ApiResponse(data=null, sign=null, updateMetadataTimestamp=0, updateConfigureTimestamp=0, code=034, desc=接口平台网关未发现)'
+2019-08-22 20:45:14,231 sessionId[83f9783d-0029-4b5a-af7b-dff91401c010] [Java AsyncTask #2] DEBUG asynchronous call result , code:'034' desc:'接口平台网关未发现' 
+2019-08-22 20:45:14,234 sessionId[83f9783d-0029-4b5a-af7b-dff91401c010] [Java AsyncTask #2] DEBUG call publishService.fetchPublish happens error!  034:接口平台网关未发现 cause :远程服务调用失败 
+2019-08-22 20:45:14,241 sessionId[83f9783d-0029-4b5a-af7b-dff91401c010] [main] ERROR 034:接口平台网关未发现
+2019-08-22 20:45:14,266 sessionId[83f9783d-0029-4b5a-af7b-dff91401c010] [main] INFO set fallback setting, iam --> http://iam-gateway.rnkrsoft.com:8002//api
+2019-08-22 20:45:14,268 sessionId[83f9783d-0029-4b5a-af7b-dff91401c010] [main] INFO set fallback setting, public --> http://iam-gateway.rnkrsoft.com:8002//api
+2019-08-22 20:45:14,271 sessionId[83f9783d-0029-4b5a-af7b-dff91401c010] [main] DEBUG add service class interface com.rnkrsoft.opensource.iam.gateway.login.facade.LoginFacade
+2019-08-22 20:45:14,274 sessionId[83f9783d-0029-4b5a-af7b-dff91401c010] [main] DEBUG register interface com.rnkrsoft.opensource.iam.gateway.login.facade.LoginFacade.public abstract com.rnkrsoft.opensource.iam.gateway.login.domains.SmsLoginResponse com.rnkrsoft.opensource.iam.gateway.login.facade.LoginFacade.smsLogin(com.rnkrsoft.opensource.iam.gateway.login.domains.SmsLoginRequest)-->iam:101:1
+2019-08-22 20:45:14,275 sessionId[83f9783d-0029-4b5a-af7b-dff91401c010] [main] DEBUG register interface com.rnkrsoft.opensource.iam.gateway.login.facade.LoginFacade.public abstract com.rnkrsoft.opensource.iam.gateway.login.domains.BindLoginResponse com.rnkrsoft.opensource.iam.gateway.login.facade.LoginFacade.bindLogin(com.rnkrsoft.opensource.iam.gateway.login.domains.BindLoginRequest)-->iam:103:1
+2019-08-22 20:45:14,278 sessionId[83f9783d-0029-4b5a-af7b-dff91401c010] [main] DEBUG register interface com.rnkrsoft.opensource.iam.gateway.login.facade.LoginFacade.public abstract com.rnkrsoft.opensource.iam.gateway.login.domains.CheckUuidResponse com.rnkrsoft.opensource.iam.gateway.login.facade.LoginFacade.checkUuid(com.rnkrsoft.opensource.iam.gateway.login.domains.CheckUuidRequest)-->iam:102:1
+2019-08-22 20:45:14,283 sessionId[c57cda44-d977-48fb-8f61-16b33fb566cb] [Java AsyncTask #3] INFO remote configure 'http://localhost:80/config' request json '{"uic":"2542563b-a153-48af-84d4-d40542c8bc3b","channels":["iam","public"],"deviceType":"Windows 10","appVersion":"4.0.0","lng":"1.0","lat":"2.0"}'!
+2019-08-22 20:45:15,301 sessionId[83f9783d-0029-4b5a-af7b-dff91401c010] [main] WARN 远程配置初始化失败, 启用本地配置
+2019-08-22 20:45:15,303 sessionId[cb00ae0b-17d5-424b-9a9d-e09f687d2a1c] [main] DEBUG execute invoke method
+2019-08-22 20:45:15,305 sessionId[cb00ae0b-17d5-424b-9a9d-e09f687d2a1c] [main] DEBUG asynchronous execute remote service request 'FetchPublishRequest(channels=[iam, public])'
+2019-08-22 20:45:15,306 sessionId[cb00ae0b-17d5-424b-9a9d-e09f687d2a1c] [Java AsyncTask #1] DEBUG asynchronous call channel:'public' txNo:'000' version:1 
+2019-08-22 20:45:15,308 sessionId[cb00ae0b-17d5-424b-9a9d-e09f687d2a1c] [Java AsyncTask #1] DEBUG asynchronous call ApiRequest:ApiRequest(channel=public, txNo=000, version=1, sessionId=cb00ae0b-17d5-424b-9a9d-e09f687d2a1c, uid=null, uic=null, deviceManufacturer=null, deviceModel=null, macAddress=null, deviceType=null, osVersion=null, appVersion=null, data={"channels":["iam","public"]}, timestamp=20190822204515308, token=null, sign=null, lng=null, lat=null) 
+2019-08-22 20:45:15,312 sessionId[cb00ae0b-17d5-424b-9a9d-e09f687d2a1c] [Java AsyncTask #1] DEBUG get Interface Connector class com.rnkrsoft.platform.client.connector.http.HttpInterfaceConnector
+2019-08-22 20:45:15,314 sessionId[cb00ae0b-17d5-424b-9a9d-e09f687d2a1c] [Java AsyncTask #1] DEBUG enabled auto locate!
+2019-08-22 20:45:15,317 sessionId[cb00ae0b-17d5-424b-9a9d-e09f687d2a1c] [Java AsyncTask #1] DEBUG call 'http://iam-gateway.rnkrsoft.com:8002/api', request '{"channel":"public","txNo":"000","version":"1","sessionId":"cb00ae0b-17d5-424b-9a9d-e09f687d2a1c","uid":"sssss","uic":"2542563b-a153-48af-84d4-d40542c8bc3b","deviceManufacturer":"PC","deviceModel":"amd64","macAddress":"44-45-53-54-00-00","deviceType":"Windows 10","osVersion":"10.0","appVersion":"4.0.0","data":"{\"channels\":[\"iam\",\"public\"]}","timestamp":"20190822204515308","lng":1.0,"lat":2.0}' 
+2019-08-22 20:45:22,289 sessionId[cb00ae0b-17d5-424b-9a9d-e09f687d2a1c] [Java AsyncTask #1] ERROR call 'http://iam-gateway.rnkrsoft.com:8002/api', gateway not found
+message:java.net.SocketTimeoutException: connect timed out
+	at com.rnkrsoft.platform.client.connector.http.HttpRequest.send(HttpRequest.java:2929)
+	at com.rnkrsoft.platform.client.connector.http.HttpInterfaceConnector.call0(HttpInterfaceConnector.java:283)
+	at com.rnkrsoft.platform.client.connector.http.HttpInterfaceConnector.call(HttpInterfaceConnector.java:372)
+	at com.rnkrsoft.platform.client.invoker.JavaAsyncInvoker.doInBackground(JavaAsyncInvoker.java:396)
+	at com.rnkrsoft.platform.client.invoker.JavaAsyncInvoker.doInBackground(JavaAsyncInvoker.java:230)
+	at com.rnkrsoft.platform.client.async.AsyncTask$1.call(AsyncTask.java:234)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+
+2019-08-22 20:45:22,291 sessionId[cb00ae0b-17d5-424b-9a9d-e09f687d2a1c] [Java AsyncTask #1] DEBUG asynchronous call ApiResponse:ApiResponse(data=null, sign=null, updateMetadataTimestamp=0, updateConfigureTimestamp=0, code=034, desc=接口平台网关未发现) 
+2019-08-22 20:45:22,291 sessionId[cb00ae0b-17d5-424b-9a9d-e09f687d2a1c] [Java AsyncTask #1] DEBUG asynchronous execute remote service response 'ApiResponse(data=null, sign=null, updateMetadataTimestamp=0, updateConfigureTimestamp=0, code=034, desc=接口平台网关未发现)'
+2019-08-22 20:45:22,292 sessionId[cb00ae0b-17d5-424b-9a9d-e09f687d2a1c] [Java AsyncTask #1] DEBUG asynchronous call result , code:'034' desc:'接口平台网关未发现' 
+2019-08-22 20:45:22,292 sessionId[cb00ae0b-17d5-424b-9a9d-e09f687d2a1c] [Java AsyncTask #1] DEBUG call publishService.fetchPublish happens error!  034:接口平台网关未发现 cause :远程服务调用失败 
+2019-08-22 20:45:22,293 sessionId[cb00ae0b-17d5-424b-9a9d-e09f687d2a1c] [main] ERROR 034:接口平台网关未发现
+2019-08-22 20:45:22,299 sessionId[cb00ae0b-17d5-424b-9a9d-e09f687d2a1c] [main] INFO set fallback setting, iam --> http://iam-gateway.rnkrsoft.com:8002//api
+2019-08-22 20:45:22,304 sessionId[cb00ae0b-17d5-424b-9a9d-e09f687d2a1c] [main] INFO set fallback setting, public --> http://iam-gateway.rnkrsoft.com:8002//api
+2019-08-22 20:45:22,305 sessionId[cb00ae0b-17d5-424b-9a9d-e09f687d2a1c] [main] DEBUG add service class interface com.rnkrsoft.opensource.iam.gateway.login.facade.LoginFacade
+2019-08-22 20:45:22,307 sessionId[cb00ae0b-17d5-424b-9a9d-e09f687d2a1c] [main] DEBUG add service class interface com.rnkrsoft.opensource.iam.gateway.sms.facade.SmsFacade
+2019-08-22 20:45:22,310 sessionId[cb00ae0b-17d5-424b-9a9d-e09f687d2a1c] [main] DEBUG register interface com.rnkrsoft.opensource.iam.gateway.login.facade.LoginFacade.public abstract com.rnkrsoft.opensource.iam.gateway.login.domains.SmsLoginResponse com.rnkrsoft.opensource.iam.gateway.login.facade.LoginFacade.smsLogin(com.rnkrsoft.opensource.iam.gateway.login.domains.SmsLoginRequest)-->iam:101:1
+2019-08-22 20:45:22,312 sessionId[cb00ae0b-17d5-424b-9a9d-e09f687d2a1c] [main] DEBUG register interface com.rnkrsoft.opensource.iam.gateway.sms.facade.SmsFacade.public abstract com.rnkrsoft.opensource.iam.gateway.sms.domains.SendNoticeSmsResponse com.rnkrsoft.opensource.iam.gateway.sms.facade.SmsFacade.sendNoticeSms(com.rnkrsoft.opensource.iam.gateway.sms.domains.SendNoticeSmsRequest)-->iam:302:1
+2019-08-22 20:45:22,312 sessionId[cb00ae0b-17d5-424b-9a9d-e09f687d2a1c] [main] DEBUG register interface com.rnkrsoft.opensource.iam.gateway.login.facade.LoginFacade.public abstract com.rnkrsoft.opensource.iam.gateway.login.domains.BindLoginResponse com.rnkrsoft.opensource.iam.gateway.login.facade.LoginFacade.bindLogin(com.rnkrsoft.opensource.iam.gateway.login.domains.BindLoginRequest)-->iam:103:1
+2019-08-22 20:45:22,313 sessionId[cb00ae0b-17d5-424b-9a9d-e09f687d2a1c] [main] DEBUG register interface com.rnkrsoft.opensource.iam.gateway.login.facade.LoginFacade.public abstract com.rnkrsoft.opensource.iam.gateway.login.domains.CheckUuidResponse com.rnkrsoft.opensource.iam.gateway.login.facade.LoginFacade.checkUuid(com.rnkrsoft.opensource.iam.gateway.login.domains.CheckUuidRequest)-->iam:102:1
+2019-08-22 20:45:22,314 sessionId[cb00ae0b-17d5-424b-9a9d-e09f687d2a1c] [main] DEBUG register interface com.rnkrsoft.opensource.iam.gateway.sms.facade.SmsFacade.public abstract com.rnkrsoft.opensource.iam.gateway.sms.domains.SendLoginSmsResponse com.rnkrsoft.opensource.iam.gateway.sms.facade.SmsFacade.sendLoginSms(com.rnkrsoft.opensource.iam.gateway.sms.domains.SendLoginSmsRequest)-->iam:301:1
+2019-08-22 20:45:22,314 sessionId[83f9783d-0029-4b5a-af7b-dff91401c010] [Java AsyncTask #2] INFO remote configure 'http://localhost:80/config' request json '{"uic":"2542563b-a153-48af-84d4-d40542c8bc3b","channels":["iam","public"],"deviceType":"Windows 10","appVersion":"4.0.0","lng":"1.0","lat":"2.0"}'!
+2019-08-22 20:45:23,317 sessionId[cb00ae0b-17d5-424b-9a9d-e09f687d2a1c] [main] WARN 远程配置初始化失败, 启用本地配置
+2019-08-22 20:45:23,318 sessionId[6a10a158-8faa-46dd-afe0-1e611f2d02c5] [main] DEBUG execute invoke method
+2019-08-22 20:45:23,319 sessionId[6a10a158-8faa-46dd-afe0-1e611f2d02c5] [main] DEBUG asynchronous execute remote service request 'FetchPublishRequest(channels=[iam, public])'
+2019-08-22 20:45:23,319 sessionId[6a10a158-8faa-46dd-afe0-1e611f2d02c5] [Java AsyncTask #3] DEBUG asynchronous call channel:'public' txNo:'000' version:1 
+2019-08-22 20:45:23,320 sessionId[6a10a158-8faa-46dd-afe0-1e611f2d02c5] [Java AsyncTask #3] DEBUG asynchronous call ApiRequest:ApiRequest(channel=public, txNo=000, version=1, sessionId=6a10a158-8faa-46dd-afe0-1e611f2d02c5, uid=null, uic=null, deviceManufacturer=null, deviceModel=null, macAddress=null, deviceType=null, osVersion=null, appVersion=null, data={"channels":["iam","public"]}, timestamp=20190822204523319, token=null, sign=null, lng=null, lat=null) 
+2019-08-22 20:45:23,320 sessionId[6a10a158-8faa-46dd-afe0-1e611f2d02c5] [Java AsyncTask #3] DEBUG get Interface Connector class com.rnkrsoft.platform.client.connector.http.HttpInterfaceConnector
+2019-08-22 20:45:23,320 sessionId[6a10a158-8faa-46dd-afe0-1e611f2d02c5] [Java AsyncTask #3] DEBUG enabled auto locate!
+2019-08-22 20:45:23,321 sessionId[6a10a158-8faa-46dd-afe0-1e611f2d02c5] [Java AsyncTask #3] DEBUG call 'http://iam-gateway.rnkrsoft.com:8002/api', request '{"channel":"public","txNo":"000","version":"1","sessionId":"6a10a158-8faa-46dd-afe0-1e611f2d02c5","uid":"sssss","uic":"2542563b-a153-48af-84d4-d40542c8bc3b","deviceManufacturer":"PC","deviceModel":"amd64","macAddress":"44-45-53-54-00-00","deviceType":"Windows 10","osVersion":"10.0","appVersion":"4.0.0","data":"{\"channels\":[\"iam\",\"public\"]}","timestamp":"20190822204523319","lng":1.0,"lat":2.0}' 
+2019-08-22 20:45:28,323 sessionId[6a10a158-8faa-46dd-afe0-1e611f2d02c5] [Java AsyncTask #3] ERROR call 'http://iam-gateway.rnkrsoft.com:8002/api', gateway not found
+message:java.net.SocketTimeoutException: connect timed out
+	at com.rnkrsoft.platform.client.connector.http.HttpRequest.send(HttpRequest.java:2929)
+	at com.rnkrsoft.platform.client.connector.http.HttpInterfaceConnector.call0(HttpInterfaceConnector.java:283)
+	at com.rnkrsoft.platform.client.connector.http.HttpInterfaceConnector.call(HttpInterfaceConnector.java:372)
+	at com.rnkrsoft.platform.client.invoker.JavaAsyncInvoker.doInBackground(JavaAsyncInvoker.java:396)
+	at com.rnkrsoft.platform.client.invoker.JavaAsyncInvoker.doInBackground(JavaAsyncInvoker.java:230)
+	at com.rnkrsoft.platform.client.async.AsyncTask$1.call(AsyncTask.java:234)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+
+2019-08-22 20:45:28,326 sessionId[6a10a158-8faa-46dd-afe0-1e611f2d02c5] [Java AsyncTask #3] DEBUG asynchronous call ApiResponse:ApiResponse(data=null, sign=null, updateMetadataTimestamp=0, updateConfigureTimestamp=0, code=034, desc=接口平台网关未发现) 
+2019-08-22 20:45:28,328 sessionId[6a10a158-8faa-46dd-afe0-1e611f2d02c5] [Java AsyncTask #3] DEBUG asynchronous execute remote service response 'ApiResponse(data=null, sign=null, updateMetadataTimestamp=0, updateConfigureTimestamp=0, code=034, desc=接口平台网关未发现)'
+2019-08-22 20:45:28,329 sessionId[6a10a158-8faa-46dd-afe0-1e611f2d02c5] [Java AsyncTask #3] DEBUG asynchronous call result , code:'034' desc:'接口平台网关未发现' 
+2019-08-22 20:45:28,330 sessionId[6a10a158-8faa-46dd-afe0-1e611f2d02c5] [Java AsyncTask #3] DEBUG call publishService.fetchPublish happens error!  034:接口平台网关未发现 cause :远程服务调用失败 
+2019-08-22 20:45:28,331 sessionId[6a10a158-8faa-46dd-afe0-1e611f2d02c5] [main] ERROR 034:接口平台网关未发现
+2019-08-22 20:45:28,340 sessionId[6a10a158-8faa-46dd-afe0-1e611f2d02c5] [main] INFO set fallback setting, iam --> http://iam-gateway.rnkrsoft.com:8002//api
+2019-08-22 20:45:28,342 sessionId[6a10a158-8faa-46dd-afe0-1e611f2d02c5] [main] INFO set fallback setting, public --> http://iam-gateway.rnkrsoft.com:8002//api
+2019-08-22 20:45:28,345 sessionId[6a10a158-8faa-46dd-afe0-1e611f2d02c5] [main] DEBUG add service class interface com.rnkrsoft.opensource.iam.gateway.user.facade.UserFacade
+2019-08-22 20:45:28,354 sessionId[6a10a158-8faa-46dd-afe0-1e611f2d02c5] [main] DEBUG register interface com.rnkrsoft.opensource.iam.gateway.user.facade.UserFacade.public abstract com.rnkrsoft.opensource.iam.gateway.user.domains.SearchUserResponse com.rnkrsoft.opensource.iam.gateway.user.facade.UserFacade.searchUser(com.rnkrsoft.opensource.iam.gateway.user.domains.SearchUserRequest)-->iam:203:1
+2019-08-22 20:45:28,355 sessionId[6a10a158-8faa-46dd-afe0-1e611f2d02c5] [main] DEBUG register interface com.rnkrsoft.opensource.iam.gateway.user.facade.UserFacade.public abstract com.rnkrsoft.opensource.iam.gateway.user.domains.GetUserDetailResponse com.rnkrsoft.opensource.iam.gateway.user.facade.UserFacade.getUserDetail(com.rnkrsoft.opensource.iam.gateway.user.domains.GetUserDetailRequest)-->iam:202:1
+2019-08-22 20:45:28,356 sessionId[6a10a158-8faa-46dd-afe0-1e611f2d02c5] [main] DEBUG register interface com.rnkrsoft.opensource.iam.gateway.user.facade.UserFacade.public abstract com.rnkrsoft.opensource.iam.gateway.user.domains.GetMyInfoResponse com.rnkrsoft.opensource.iam.gateway.user.facade.UserFacade.getMyInfo(com.rnkrsoft.opensource.iam.gateway.user.domains.GetMyInfoRequest)-->iam:201:1
+2019-08-22 20:45:28,358 sessionId[cb00ae0b-17d5-424b-9a9d-e09f687d2a1c] [Java AsyncTask #1] INFO remote configure 'http://localhost:80/config' request json '{"uic":"2542563b-a153-48af-84d4-d40542c8bc3b","channels":["iam","public"],"deviceType":"Windows 10","appVersion":"4.0.0","lng":"1.0","lat":"2.0"}'!
+2019-08-22 20:45:29,367 sessionId[6a10a158-8faa-46dd-afe0-1e611f2d02c5] [main] WARN 远程配置初始化失败, 启用本地配置
+2019-08-22 20:45:29,369 sessionId[2cbf6e87-ab0c-4684-8d0e-11eee36e7ac9] [main] DEBUG execute invoke method
+2019-08-22 20:45:29,370 sessionId[2cbf6e87-ab0c-4684-8d0e-11eee36e7ac9] [main] DEBUG asynchronous execute remote service request 'FetchPublishRequest(channels=[iam, public])'
+2019-08-22 20:45:29,371 sessionId[2cbf6e87-ab0c-4684-8d0e-11eee36e7ac9] [Java AsyncTask #2] DEBUG asynchronous call channel:'public' txNo:'000' version:1 
+2019-08-22 20:45:29,372 sessionId[2cbf6e87-ab0c-4684-8d0e-11eee36e7ac9] [Java AsyncTask #2] DEBUG asynchronous call ApiRequest:ApiRequest(channel=public, txNo=000, version=1, sessionId=2cbf6e87-ab0c-4684-8d0e-11eee36e7ac9, uid=null, uic=null, deviceManufacturer=null, deviceModel=null, macAddress=null, deviceType=null, osVersion=null, appVersion=null, data={"channels":["iam","public"]}, timestamp=20190822204529372, token=null, sign=null, lng=null, lat=null) 
+2019-08-22 20:45:29,374 sessionId[2cbf6e87-ab0c-4684-8d0e-11eee36e7ac9] [Java AsyncTask #2] DEBUG get Interface Connector class com.rnkrsoft.platform.client.connector.http.HttpInterfaceConnector
+2019-08-22 20:45:29,375 sessionId[2cbf6e87-ab0c-4684-8d0e-11eee36e7ac9] [Java AsyncTask #2] DEBUG enabled auto locate!
+2019-08-22 20:45:29,377 sessionId[2cbf6e87-ab0c-4684-8d0e-11eee36e7ac9] [Java AsyncTask #2] DEBUG call 'http://iam-gateway.rnkrsoft.com:8002/api', request '{"channel":"public","txNo":"000","version":"1","sessionId":"2cbf6e87-ab0c-4684-8d0e-11eee36e7ac9","uid":"sssss","uic":"2542563b-a153-48af-84d4-d40542c8bc3b","deviceManufacturer":"PC","deviceModel":"amd64","macAddress":"44-45-53-54-00-00","deviceType":"Windows 10","osVersion":"10.0","appVersion":"4.0.0","data":"{\"channels\":[\"iam\",\"public\"]}","timestamp":"20190822204529372","token":"5a89cb68-beb9-4204-bd84-1cbd49f45b5a","lng":1.0,"lat":2.0}' 
+2019-08-22 20:45:34,380 sessionId[2cbf6e87-ab0c-4684-8d0e-11eee36e7ac9] [Java AsyncTask #2] ERROR call 'http://iam-gateway.rnkrsoft.com:8002/api', gateway not found
+message:java.net.SocketTimeoutException: connect timed out
+	at com.rnkrsoft.platform.client.connector.http.HttpRequest.send(HttpRequest.java:2929)
+	at com.rnkrsoft.platform.client.connector.http.HttpInterfaceConnector.call0(HttpInterfaceConnector.java:283)
+	at com.rnkrsoft.platform.client.connector.http.HttpInterfaceConnector.call(HttpInterfaceConnector.java:372)
+	at com.rnkrsoft.platform.client.invoker.JavaAsyncInvoker.doInBackground(JavaAsyncInvoker.java:396)
+	at com.rnkrsoft.platform.client.invoker.JavaAsyncInvoker.doInBackground(JavaAsyncInvoker.java:230)
+	at com.rnkrsoft.platform.client.async.AsyncTask$1.call(AsyncTask.java:234)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+
+2019-08-22 20:45:34,398 sessionId[2cbf6e87-ab0c-4684-8d0e-11eee36e7ac9] [Java AsyncTask #2] DEBUG asynchronous call ApiResponse:ApiResponse(data=null, sign=null, updateMetadataTimestamp=0, updateConfigureTimestamp=0, code=034, desc=接口平台网关未发现) 
+2019-08-22 20:45:34,401 sessionId[2cbf6e87-ab0c-4684-8d0e-11eee36e7ac9] [Java AsyncTask #2] DEBUG asynchronous execute remote service response 'ApiResponse(data=null, sign=null, updateMetadataTimestamp=0, updateConfigureTimestamp=0, code=034, desc=接口平台网关未发现)'
+2019-08-22 20:45:34,401 sessionId[2cbf6e87-ab0c-4684-8d0e-11eee36e7ac9] [Java AsyncTask #2] DEBUG asynchronous call result , code:'034' desc:'接口平台网关未发现' 
+2019-08-22 20:45:34,402 sessionId[2cbf6e87-ab0c-4684-8d0e-11eee36e7ac9] [Java AsyncTask #2] DEBUG call publishService.fetchPublish happens error!  034:接口平台网关未发现 cause :远程服务调用失败 
+2019-08-22 20:45:34,404 sessionId[2cbf6e87-ab0c-4684-8d0e-11eee36e7ac9] [main] ERROR 034:接口平台网关未发现
+2019-08-22 20:48:59,153 sessionId[dfb63db8-d1fd-4471-a079-60042683d8ab] [main] INFO set fallback setting, iam --> http://localhost:8001//api
+2019-08-22 20:48:59,368 sessionId[dfb63db8-d1fd-4471-a079-60042683d8ab] [main] INFO set fallback setting, public --> http://localhost:8001//api
+2019-08-22 20:48:59,371 sessionId[dfb63db8-d1fd-4471-a079-60042683d8ab] [main] DEBUG add service class interface com.rnkrsoft.opensource.iam.gateway.login.facade.LoginFacade
+2019-08-22 20:48:59,386 sessionId[dfb63db8-d1fd-4471-a079-60042683d8ab] [main] DEBUG register interface com.rnkrsoft.opensource.iam.gateway.login.facade.LoginFacade.public abstract com.rnkrsoft.opensource.iam.gateway.login.domains.SmsLoginResponse com.rnkrsoft.opensource.iam.gateway.login.facade.LoginFacade.smsLogin(com.rnkrsoft.opensource.iam.gateway.login.domains.SmsLoginRequest)-->iam:101:1
+2019-08-22 20:48:59,386 sessionId[dfb63db8-d1fd-4471-a079-60042683d8ab] [main] DEBUG register interface com.rnkrsoft.opensource.iam.gateway.login.facade.LoginFacade.public abstract com.rnkrsoft.opensource.iam.gateway.login.domains.BindLoginResponse com.rnkrsoft.opensource.iam.gateway.login.facade.LoginFacade.bindLogin(com.rnkrsoft.opensource.iam.gateway.login.domains.BindLoginRequest)-->iam:103:1
+2019-08-22 20:48:59,387 sessionId[dfb63db8-d1fd-4471-a079-60042683d8ab] [main] DEBUG register interface com.rnkrsoft.opensource.iam.gateway.login.facade.LoginFacade.public abstract com.rnkrsoft.opensource.iam.gateway.login.domains.CheckUuidResponse com.rnkrsoft.opensource.iam.gateway.login.facade.LoginFacade.checkUuid(com.rnkrsoft.opensource.iam.gateway.login.domains.CheckUuidRequest)-->iam:102:1
+2019-08-22 20:48:59,417 sessionId[8f632f76-2bba-443b-944a-f46351d0171e] [Java AsyncTask #1] INFO remote configure 'http://localhost:80/config' request json '{"uic":"2542563b-a153-48af-84d4-d40542c8bc3b","channels":["iam","public"],"deviceType":"Windows 10","appVersion":"4.0.0","lng":"1.0","lat":"2.0"}'!
+2019-08-22 20:49:00,681 sessionId[dfb63db8-d1fd-4471-a079-60042683d8ab] [main] WARN 远程配置初始化失败, 启用本地配置
+2019-08-22 20:49:00,690 sessionId[a3b13e24-dfca-4fec-a32e-2bc427f401e3] [main] DEBUG execute invoke method
+2019-08-22 20:49:00,695 sessionId[a3b13e24-dfca-4fec-a32e-2bc427f401e3] [main] DEBUG asynchronous execute remote service request 'FetchPublishRequest(channels=[iam, public])'
+2019-08-22 20:49:00,707 sessionId[a3b13e24-dfca-4fec-a32e-2bc427f401e3] [Java AsyncTask #2] DEBUG asynchronous call channel:'public' txNo:'000' version:1 
+2019-08-22 20:49:00,715 sessionId[a3b13e24-dfca-4fec-a32e-2bc427f401e3] [Java AsyncTask #2] DEBUG asynchronous call ApiRequest:ApiRequest(channel=public, txNo=000, version=1, sessionId=a3b13e24-dfca-4fec-a32e-2bc427f401e3, uid=null, uic=null, deviceManufacturer=null, deviceModel=null, macAddress=null, deviceType=null, osVersion=null, appVersion=null, data={"channels":["iam","public"]}, timestamp=20190822204900710, token=null, sign=null, lng=null, lat=null) 
+2019-08-22 20:49:00,720 sessionId[a3b13e24-dfca-4fec-a32e-2bc427f401e3] [Java AsyncTask #2] DEBUG get Interface Connector class com.rnkrsoft.platform.client.connector.http.HttpInterfaceConnector
+2019-08-22 20:49:00,723 sessionId[a3b13e24-dfca-4fec-a32e-2bc427f401e3] [Java AsyncTask #2] DEBUG enabled auto locate!
+2019-08-22 20:49:00,729 sessionId[a3b13e24-dfca-4fec-a32e-2bc427f401e3] [Java AsyncTask #2] DEBUG call 'http://localhost:8001/api', request '{"channel":"public","txNo":"000","version":"1","sessionId":"a3b13e24-dfca-4fec-a32e-2bc427f401e3","uid":"sssss","uic":"2542563b-a153-48af-84d4-d40542c8bc3b","deviceManufacturer":"PC","deviceModel":"amd64","macAddress":"44-45-53-54-00-00","deviceType":"Windows 10","osVersion":"10.0","appVersion":"4.0.0","data":"{\"channels\":[\"iam\",\"public\"]}","timestamp":"20190822204900710","token":"723d0876-e3e7-473f-a8d3-b4d2267a67e8","lng":1.0,"lat":2.0}' 
+2019-08-22 20:49:01,735 sessionId[a3b13e24-dfca-4fec-a32e-2bc427f401e3] [Java AsyncTask #2] ERROR call 'http://localhost:8001/api', 接口平台网关未发现 
+message:Connection refused: connect
+	at java.net.DualStackPlainSocketImpl.waitForConnect(Native Method)
+	at java.net.DualStackPlainSocketImpl.socketConnect(DualStackPlainSocketImpl.java:85)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:172)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:589)
+	at sun.net.NetworkClient.doConnect(NetworkClient.java:175)
+	at sun.net.www.http.HttpClient.openServer(HttpClient.java:463)
+	at sun.net.www.http.HttpClient.openServer(HttpClient.java:558)
+	at sun.net.www.http.HttpClient.<init>(HttpClient.java:242)
+	at sun.net.www.http.HttpClient.New(HttpClient.java:339)
+	at sun.net.www.http.HttpClient.New(HttpClient.java:357)
+	at sun.net.www.protocol.http.HttpURLConnection.getNewHttpClient(HttpURLConnection.java:1220)
+	at sun.net.www.protocol.http.HttpURLConnection.plainConnect0(HttpURLConnection.java:1156)
+	at sun.net.www.protocol.http.HttpURLConnection.plainConnect(HttpURLConnection.java:1050)
+	at sun.net.www.protocol.http.HttpURLConnection.connect(HttpURLConnection.java:984)
+	at sun.net.www.protocol.http.HttpURLConnection.getOutputStream0(HttpURLConnection.java:1334)
+	at sun.net.www.protocol.http.HttpURLConnection.getOutputStream(HttpURLConnection.java:1309)
+	at com.rnkrsoft.platform.client.connector.http.HttpRequest.openOutput(HttpRequest.java:2610)
+	at com.rnkrsoft.platform.client.connector.http.HttpRequest.send(HttpRequest.java:2926)
+	at com.rnkrsoft.platform.client.connector.http.HttpInterfaceConnector.call0(HttpInterfaceConnector.java:283)
+	at com.rnkrsoft.platform.client.connector.http.HttpInterfaceConnector.call(HttpInterfaceConnector.java:372)
+	at com.rnkrsoft.platform.client.invoker.JavaAsyncInvoker.doInBackground(JavaAsyncInvoker.java:396)
+	at com.rnkrsoft.platform.client.invoker.JavaAsyncInvoker.doInBackground(JavaAsyncInvoker.java:230)
+	at com.rnkrsoft.platform.client.async.AsyncTask$1.call(AsyncTask.java:234)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+
+2019-08-22 20:49:01,744 sessionId[a3b13e24-dfca-4fec-a32e-2bc427f401e3] [Java AsyncTask #2] DEBUG asynchronous call ApiResponse:ApiResponse(data=null, sign=null, updateMetadataTimestamp=0, updateConfigureTimestamp=0, code=034, desc=接口平台网关未发现) 
+2019-08-22 20:49:01,746 sessionId[a3b13e24-dfca-4fec-a32e-2bc427f401e3] [Java AsyncTask #2] DEBUG asynchronous execute remote service response 'ApiResponse(data=null, sign=null, updateMetadataTimestamp=0, updateConfigureTimestamp=0, code=034, desc=接口平台网关未发现)'
+2019-08-22 20:49:01,750 sessionId[a3b13e24-dfca-4fec-a32e-2bc427f401e3] [Java AsyncTask #2] DEBUG asynchronous call result , code:'034' desc:'接口平台网关未发现' 
+2019-08-22 20:49:01,753 sessionId[a3b13e24-dfca-4fec-a32e-2bc427f401e3] [Java AsyncTask #2] DEBUG call publishService.fetchPublish happens error!  034:接口平台网关未发现 cause :远程服务调用失败 
+2019-08-22 20:49:01,760 sessionId[a3b13e24-dfca-4fec-a32e-2bc427f401e3] [main] ERROR 034:接口平台网关未发现
+2019-08-22 20:49:01,778 sessionId[a3b13e24-dfca-4fec-a32e-2bc427f401e3] [main] INFO set fallback setting, iam --> http://iam-gateway.rnkrsoft.com:8002//api
+2019-08-22 20:49:01,780 sessionId[a3b13e24-dfca-4fec-a32e-2bc427f401e3] [main] INFO set fallback setting, public --> http://iam-gateway.rnkrsoft.com:8002//api
+2019-08-22 20:49:01,784 sessionId[a3b13e24-dfca-4fec-a32e-2bc427f401e3] [main] DEBUG add service class interface com.rnkrsoft.opensource.iam.gateway.login.facade.LoginFacade
+2019-08-22 20:49:01,785 sessionId[a3b13e24-dfca-4fec-a32e-2bc427f401e3] [main] DEBUG register interface com.rnkrsoft.opensource.iam.gateway.login.facade.LoginFacade.public abstract com.rnkrsoft.opensource.iam.gateway.login.domains.SmsLoginResponse com.rnkrsoft.opensource.iam.gateway.login.facade.LoginFacade.smsLogin(com.rnkrsoft.opensource.iam.gateway.login.domains.SmsLoginRequest)-->iam:101:1
+2019-08-22 20:49:01,786 sessionId[a3b13e24-dfca-4fec-a32e-2bc427f401e3] [main] DEBUG register interface com.rnkrsoft.opensource.iam.gateway.login.facade.LoginFacade.public abstract com.rnkrsoft.opensource.iam.gateway.login.domains.BindLoginResponse com.rnkrsoft.opensource.iam.gateway.login.facade.LoginFacade.bindLogin(com.rnkrsoft.opensource.iam.gateway.login.domains.BindLoginRequest)-->iam:103:1
+2019-08-22 20:49:01,788 sessionId[a3b13e24-dfca-4fec-a32e-2bc427f401e3] [main] DEBUG register interface com.rnkrsoft.opensource.iam.gateway.login.facade.LoginFacade.public abstract com.rnkrsoft.opensource.iam.gateway.login.domains.CheckUuidResponse com.rnkrsoft.opensource.iam.gateway.login.facade.LoginFacade.checkUuid(com.rnkrsoft.opensource.iam.gateway.login.domains.CheckUuidRequest)-->iam:102:1
+2019-08-22 20:49:01,793 sessionId[f60d3d72-1d45-43f0-8129-6659d8db57eb] [Java AsyncTask #3] INFO remote configure 'http://localhost:80/config' request json '{"uic":"2542563b-a153-48af-84d4-d40542c8bc3b","channels":["iam","public"],"deviceType":"Windows 10","appVersion":"4.0.0","lng":"1.0","lat":"2.0"}'!
+2019-08-22 20:49:02,802 sessionId[a3b13e24-dfca-4fec-a32e-2bc427f401e3] [main] WARN 远程配置初始化失败, 启用本地配置
+2019-08-22 20:49:02,803 sessionId[5743574d-da7d-40fa-a268-903e13d23d06] [main] DEBUG execute invoke method
+2019-08-22 20:49:02,803 sessionId[5743574d-da7d-40fa-a268-903e13d23d06] [main] DEBUG asynchronous execute remote service request 'FetchPublishRequest(channels=[iam, public])'
+2019-08-22 20:49:02,804 sessionId[5743574d-da7d-40fa-a268-903e13d23d06] [Java AsyncTask #1] DEBUG asynchronous call channel:'public' txNo:'000' version:1 
+2019-08-22 20:49:02,805 sessionId[5743574d-da7d-40fa-a268-903e13d23d06] [Java AsyncTask #1] DEBUG asynchronous call ApiRequest:ApiRequest(channel=public, txNo=000, version=1, sessionId=5743574d-da7d-40fa-a268-903e13d23d06, uid=null, uic=null, deviceManufacturer=null, deviceModel=null, macAddress=null, deviceType=null, osVersion=null, appVersion=null, data={"channels":["iam","public"]}, timestamp=20190822204902804, token=null, sign=null, lng=null, lat=null) 
+2019-08-22 20:49:02,805 sessionId[5743574d-da7d-40fa-a268-903e13d23d06] [Java AsyncTask #1] DEBUG get Interface Connector class com.rnkrsoft.platform.client.connector.http.HttpInterfaceConnector
+2019-08-22 20:49:02,806 sessionId[5743574d-da7d-40fa-a268-903e13d23d06] [Java AsyncTask #1] DEBUG enabled auto locate!
+2019-08-22 20:49:02,806 sessionId[5743574d-da7d-40fa-a268-903e13d23d06] [Java AsyncTask #1] DEBUG call 'http://iam-gateway.rnkrsoft.com:8002/api', request '{"channel":"public","txNo":"000","version":"1","sessionId":"5743574d-da7d-40fa-a268-903e13d23d06","uid":"sssss","uic":"2542563b-a153-48af-84d4-d40542c8bc3b","deviceManufacturer":"PC","deviceModel":"amd64","macAddress":"44-45-53-54-00-00","deviceType":"Windows 10","osVersion":"10.0","appVersion":"4.0.0","data":"{\"channels\":[\"iam\",\"public\"]}","timestamp":"20190822204902804","lng":1.0,"lat":2.0}' 
+2019-08-22 20:49:07,810 sessionId[5743574d-da7d-40fa-a268-903e13d23d06] [Java AsyncTask #1] ERROR call 'http://iam-gateway.rnkrsoft.com:8002/api', gateway not found
+message:java.net.SocketTimeoutException: connect timed out
+	at com.rnkrsoft.platform.client.connector.http.HttpRequest.send(HttpRequest.java:2929)
+	at com.rnkrsoft.platform.client.connector.http.HttpInterfaceConnector.call0(HttpInterfaceConnector.java:283)
+	at com.rnkrsoft.platform.client.connector.http.HttpInterfaceConnector.call(HttpInterfaceConnector.java:372)
+	at com.rnkrsoft.platform.client.invoker.JavaAsyncInvoker.doInBackground(JavaAsyncInvoker.java:396)
+	at com.rnkrsoft.platform.client.invoker.JavaAsyncInvoker.doInBackground(JavaAsyncInvoker.java:230)
+	at com.rnkrsoft.platform.client.async.AsyncTask$1.call(AsyncTask.java:234)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+
+2019-08-22 20:49:07,813 sessionId[5743574d-da7d-40fa-a268-903e13d23d06] [Java AsyncTask #1] DEBUG asynchronous call ApiResponse:ApiResponse(data=null, sign=null, updateMetadataTimestamp=0, updateConfigureTimestamp=0, code=034, desc=接口平台网关未发现) 
+2019-08-22 20:49:07,815 sessionId[5743574d-da7d-40fa-a268-903e13d23d06] [Java AsyncTask #1] DEBUG asynchronous execute remote service response 'ApiResponse(data=null, sign=null, updateMetadataTimestamp=0, updateConfigureTimestamp=0, code=034, desc=接口平台网关未发现)'
+2019-08-22 20:49:07,816 sessionId[5743574d-da7d-40fa-a268-903e13d23d06] [Java AsyncTask #1] DEBUG asynchronous call result , code:'034' desc:'接口平台网关未发现' 
+2019-08-22 20:49:07,817 sessionId[5743574d-da7d-40fa-a268-903e13d23d06] [Java AsyncTask #1] DEBUG call publishService.fetchPublish happens error!  034:接口平台网关未发现 cause :远程服务调用失败 
+2019-08-22 20:49:07,819 sessionId[5743574d-da7d-40fa-a268-903e13d23d06] [main] ERROR 034:接口平台网关未发现
+2019-08-22 20:49:07,831 sessionId[5743574d-da7d-40fa-a268-903e13d23d06] [main] INFO set fallback setting, iam --> http://iam-gateway.rnkrsoft.com:8002//api
+2019-08-22 20:49:07,836 sessionId[5743574d-da7d-40fa-a268-903e13d23d06] [main] INFO set fallback setting, public --> http://iam-gateway.rnkrsoft.com:8002//api
+2019-08-22 20:49:07,843 sessionId[5743574d-da7d-40fa-a268-903e13d23d06] [main] DEBUG add service class interface com.rnkrsoft.opensource.iam.gateway.login.facade.LoginFacade
+2019-08-22 20:49:07,846 sessionId[5743574d-da7d-40fa-a268-903e13d23d06] [main] DEBUG add service class interface com.rnkrsoft.opensource.iam.gateway.sms.facade.SmsFacade
+2019-08-22 20:49:07,853 sessionId[5743574d-da7d-40fa-a268-903e13d23d06] [main] DEBUG register interface com.rnkrsoft.opensource.iam.gateway.login.facade.LoginFacade.public abstract com.rnkrsoft.opensource.iam.gateway.login.domains.SmsLoginResponse com.rnkrsoft.opensource.iam.gateway.login.facade.LoginFacade.smsLogin(com.rnkrsoft.opensource.iam.gateway.login.domains.SmsLoginRequest)-->iam:101:1
+2019-08-22 20:49:07,854 sessionId[5743574d-da7d-40fa-a268-903e13d23d06] [main] DEBUG register interface com.rnkrsoft.opensource.iam.gateway.sms.facade.SmsFacade.public abstract com.rnkrsoft.opensource.iam.gateway.sms.domains.SendNoticeSmsResponse com.rnkrsoft.opensource.iam.gateway.sms.facade.SmsFacade.sendNoticeSms(com.rnkrsoft.opensource.iam.gateway.sms.domains.SendNoticeSmsRequest)-->iam:302:1
+2019-08-22 20:49:07,855 sessionId[5743574d-da7d-40fa-a268-903e13d23d06] [main] DEBUG register interface com.rnkrsoft.opensource.iam.gateway.login.facade.LoginFacade.public abstract com.rnkrsoft.opensource.iam.gateway.login.domains.BindLoginResponse com.rnkrsoft.opensource.iam.gateway.login.facade.LoginFacade.bindLogin(com.rnkrsoft.opensource.iam.gateway.login.domains.BindLoginRequest)-->iam:103:1
+2019-08-22 20:49:07,857 sessionId[5743574d-da7d-40fa-a268-903e13d23d06] [main] DEBUG register interface com.rnkrsoft.opensource.iam.gateway.login.facade.LoginFacade.public abstract com.rnkrsoft.opensource.iam.gateway.login.domains.CheckUuidResponse com.rnkrsoft.opensource.iam.gateway.login.facade.LoginFacade.checkUuid(com.rnkrsoft.opensource.iam.gateway.login.domains.CheckUuidRequest)-->iam:102:1
+2019-08-22 20:49:07,858 sessionId[5743574d-da7d-40fa-a268-903e13d23d06] [main] DEBUG register interface com.rnkrsoft.opensource.iam.gateway.sms.facade.SmsFacade.public abstract com.rnkrsoft.opensource.iam.gateway.sms.domains.SendLoginSmsResponse com.rnkrsoft.opensource.iam.gateway.sms.facade.SmsFacade.sendLoginSms(com.rnkrsoft.opensource.iam.gateway.sms.domains.SendLoginSmsRequest)-->iam:301:1
+2019-08-22 20:49:07,859 sessionId[a3b13e24-dfca-4fec-a32e-2bc427f401e3] [Java AsyncTask #2] INFO remote configure 'http://localhost:80/config' request json '{"uic":"2542563b-a153-48af-84d4-d40542c8bc3b","channels":["iam","public"],"deviceType":"Windows 10","appVersion":"4.0.0","lng":"1.0","lat":"2.0"}'!
+2019-08-22 20:49:08,876 sessionId[5743574d-da7d-40fa-a268-903e13d23d06] [main] WARN 远程配置初始化失败, 启用本地配置
+2019-08-22 20:49:08,877 sessionId[6e55d9e8-da38-49b1-b51c-4f06d2594cb2] [main] DEBUG execute invoke method
+2019-08-22 20:49:08,879 sessionId[6e55d9e8-da38-49b1-b51c-4f06d2594cb2] [main] DEBUG asynchronous execute remote service request 'FetchPublishRequest(channels=[iam, public])'
+2019-08-22 20:49:08,880 sessionId[6e55d9e8-da38-49b1-b51c-4f06d2594cb2] [Java AsyncTask #3] DEBUG asynchronous call channel:'public' txNo:'000' version:1 
+2019-08-22 20:49:08,882 sessionId[6e55d9e8-da38-49b1-b51c-4f06d2594cb2] [Java AsyncTask #3] DEBUG asynchronous call ApiRequest:ApiRequest(channel=public, txNo=000, version=1, sessionId=6e55d9e8-da38-49b1-b51c-4f06d2594cb2, uid=null, uic=null, deviceManufacturer=null, deviceModel=null, macAddress=null, deviceType=null, osVersion=null, appVersion=null, data={"channels":["iam","public"]}, timestamp=20190822204908882, token=null, sign=null, lng=null, lat=null) 
+2019-08-22 20:49:08,884 sessionId[6e55d9e8-da38-49b1-b51c-4f06d2594cb2] [Java AsyncTask #3] DEBUG get Interface Connector class com.rnkrsoft.platform.client.connector.http.HttpInterfaceConnector
+2019-08-22 20:49:08,885 sessionId[6e55d9e8-da38-49b1-b51c-4f06d2594cb2] [Java AsyncTask #3] DEBUG enabled auto locate!
+2019-08-22 20:49:08,887 sessionId[6e55d9e8-da38-49b1-b51c-4f06d2594cb2] [Java AsyncTask #3] DEBUG call 'http://iam-gateway.rnkrsoft.com:8002/api', request '{"channel":"public","txNo":"000","version":"1","sessionId":"6e55d9e8-da38-49b1-b51c-4f06d2594cb2","uid":"sssss","uic":"2542563b-a153-48af-84d4-d40542c8bc3b","deviceManufacturer":"PC","deviceModel":"amd64","macAddress":"44-45-53-54-00-00","deviceType":"Windows 10","osVersion":"10.0","appVersion":"4.0.0","data":"{\"channels\":[\"iam\",\"public\"]}","timestamp":"20190822204908882","lng":1.0,"lat":2.0}' 
+2019-08-22 20:49:13,900 sessionId[6e55d9e8-da38-49b1-b51c-4f06d2594cb2] [Java AsyncTask #3] ERROR call 'http://iam-gateway.rnkrsoft.com:8002/api', gateway not found
+message:java.net.SocketTimeoutException: connect timed out
+	at com.rnkrsoft.platform.client.connector.http.HttpRequest.send(HttpRequest.java:2929)
+	at com.rnkrsoft.platform.client.connector.http.HttpInterfaceConnector.call0(HttpInterfaceConnector.java:283)
+	at com.rnkrsoft.platform.client.connector.http.HttpInterfaceConnector.call(HttpInterfaceConnector.java:372)
+	at com.rnkrsoft.platform.client.invoker.JavaAsyncInvoker.doInBackground(JavaAsyncInvoker.java:396)
+	at com.rnkrsoft.platform.client.invoker.JavaAsyncInvoker.doInBackground(JavaAsyncInvoker.java:230)
+	at com.rnkrsoft.platform.client.async.AsyncTask$1.call(AsyncTask.java:234)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+
+2019-08-22 20:49:13,901 sessionId[6e55d9e8-da38-49b1-b51c-4f06d2594cb2] [Java AsyncTask #3] DEBUG asynchronous call ApiResponse:ApiResponse(data=null, sign=null, updateMetadataTimestamp=0, updateConfigureTimestamp=0, code=034, desc=接口平台网关未发现) 
+2019-08-22 20:49:13,902 sessionId[6e55d9e8-da38-49b1-b51c-4f06d2594cb2] [Java AsyncTask #3] DEBUG asynchronous execute remote service response 'ApiResponse(data=null, sign=null, updateMetadataTimestamp=0, updateConfigureTimestamp=0, code=034, desc=接口平台网关未发现)'
+2019-08-22 20:49:13,902 sessionId[6e55d9e8-da38-49b1-b51c-4f06d2594cb2] [Java AsyncTask #3] DEBUG asynchronous call result , code:'034' desc:'接口平台网关未发现' 
+2019-08-22 20:49:13,903 sessionId[6e55d9e8-da38-49b1-b51c-4f06d2594cb2] [Java AsyncTask #3] DEBUG call publishService.fetchPublish happens error!  034:接口平台网关未发现 cause :远程服务调用失败 
+2019-08-22 20:49:13,913 sessionId[6e55d9e8-da38-49b1-b51c-4f06d2594cb2] [main] ERROR 034:接口平台网关未发现
+2019-08-22 20:49:13,918 sessionId[6e55d9e8-da38-49b1-b51c-4f06d2594cb2] [main] INFO set fallback setting, iam --> http://iam-gateway.rnkrsoft.com:8002//api
+2019-08-22 20:49:13,919 sessionId[6e55d9e8-da38-49b1-b51c-4f06d2594cb2] [main] INFO set fallback setting, public --> http://iam-gateway.rnkrsoft.com:8002//api
+2019-08-22 20:49:13,921 sessionId[6e55d9e8-da38-49b1-b51c-4f06d2594cb2] [main] DEBUG add service class interface com.rnkrsoft.opensource.iam.gateway.user.facade.UserFacade
+2019-08-22 20:49:13,926 sessionId[6e55d9e8-da38-49b1-b51c-4f06d2594cb2] [main] DEBUG register interface com.rnkrsoft.opensource.iam.gateway.user.facade.UserFacade.public abstract com.rnkrsoft.opensource.iam.gateway.user.domains.SearchUserResponse com.rnkrsoft.opensource.iam.gateway.user.facade.UserFacade.searchUser(com.rnkrsoft.opensource.iam.gateway.user.domains.SearchUserRequest)-->iam:203:1
+2019-08-22 20:49:13,927 sessionId[6e55d9e8-da38-49b1-b51c-4f06d2594cb2] [main] DEBUG register interface com.rnkrsoft.opensource.iam.gateway.user.facade.UserFacade.public abstract com.rnkrsoft.opensource.iam.gateway.user.domains.GetUserDetailResponse com.rnkrsoft.opensource.iam.gateway.user.facade.UserFacade.getUserDetail(com.rnkrsoft.opensource.iam.gateway.user.domains.GetUserDetailRequest)-->iam:202:1
+2019-08-22 20:49:13,928 sessionId[6e55d9e8-da38-49b1-b51c-4f06d2594cb2] [main] DEBUG register interface com.rnkrsoft.opensource.iam.gateway.user.facade.UserFacade.public abstract com.rnkrsoft.opensource.iam.gateway.user.domains.GetMyInfoResponse com.rnkrsoft.opensource.iam.gateway.user.facade.UserFacade.getMyInfo(com.rnkrsoft.opensource.iam.gateway.user.domains.GetMyInfoRequest)-->iam:201:1
+2019-08-22 20:49:13,931 sessionId[5743574d-da7d-40fa-a268-903e13d23d06] [Java AsyncTask #1] INFO remote configure 'http://localhost:80/config' request json '{"uic":"2542563b-a153-48af-84d4-d40542c8bc3b","channels":["iam","public"],"deviceType":"Windows 10","appVersion":"4.0.0","lng":"1.0","lat":"2.0"}'!
+2019-08-22 20:49:14,941 sessionId[6e55d9e8-da38-49b1-b51c-4f06d2594cb2] [main] WARN 远程配置初始化失败, 启用本地配置
+2019-08-22 20:49:14,942 sessionId[61b3453e-3974-4743-83db-97061cdcb507] [main] DEBUG execute invoke method
+2019-08-22 20:49:14,944 sessionId[61b3453e-3974-4743-83db-97061cdcb507] [main] DEBUG asynchronous execute remote service request 'FetchPublishRequest(channels=[iam, public])'
+2019-08-22 20:49:14,945 sessionId[61b3453e-3974-4743-83db-97061cdcb507] [Java AsyncTask #2] DEBUG asynchronous call channel:'public' txNo:'000' version:1 
+2019-08-22 20:49:14,947 sessionId[61b3453e-3974-4743-83db-97061cdcb507] [Java AsyncTask #2] DEBUG asynchronous call ApiRequest:ApiRequest(channel=public, txNo=000, version=1, sessionId=61b3453e-3974-4743-83db-97061cdcb507, uid=null, uic=null, deviceManufacturer=null, deviceModel=null, macAddress=null, deviceType=null, osVersion=null, appVersion=null, data={"channels":["iam","public"]}, timestamp=20190822204914946, token=null, sign=null, lng=null, lat=null) 
+2019-08-22 20:49:14,947 sessionId[61b3453e-3974-4743-83db-97061cdcb507] [Java AsyncTask #2] DEBUG get Interface Connector class com.rnkrsoft.platform.client.connector.http.HttpInterfaceConnector
+2019-08-22 20:49:14,949 sessionId[61b3453e-3974-4743-83db-97061cdcb507] [Java AsyncTask #2] DEBUG enabled auto locate!
+2019-08-22 20:49:14,949 sessionId[61b3453e-3974-4743-83db-97061cdcb507] [Java AsyncTask #2] DEBUG call 'http://iam-gateway.rnkrsoft.com:8002/api', request '{"channel":"public","txNo":"000","version":"1","sessionId":"61b3453e-3974-4743-83db-97061cdcb507","uid":"sssss","uic":"2542563b-a153-48af-84d4-d40542c8bc3b","deviceManufacturer":"PC","deviceModel":"amd64","macAddress":"44-45-53-54-00-00","deviceType":"Windows 10","osVersion":"10.0","appVersion":"4.0.0","data":"{\"channels\":[\"iam\",\"public\"]}","timestamp":"20190822204914946","token":"5a89cb68-beb9-4204-bd84-1cbd49f45b5a","lng":1.0,"lat":2.0}' 
+2019-08-22 20:49:19,952 sessionId[61b3453e-3974-4743-83db-97061cdcb507] [Java AsyncTask #2] ERROR call 'http://iam-gateway.rnkrsoft.com:8002/api', gateway not found
+message:java.net.SocketTimeoutException: connect timed out
+	at com.rnkrsoft.platform.client.connector.http.HttpRequest.send(HttpRequest.java:2929)
+	at com.rnkrsoft.platform.client.connector.http.HttpInterfaceConnector.call0(HttpInterfaceConnector.java:283)
+	at com.rnkrsoft.platform.client.connector.http.HttpInterfaceConnector.call(HttpInterfaceConnector.java:372)
+	at com.rnkrsoft.platform.client.invoker.JavaAsyncInvoker.doInBackground(JavaAsyncInvoker.java:396)
+	at com.rnkrsoft.platform.client.invoker.JavaAsyncInvoker.doInBackground(JavaAsyncInvoker.java:230)
+	at com.rnkrsoft.platform.client.async.AsyncTask$1.call(AsyncTask.java:234)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+
+2019-08-22 20:49:19,954 sessionId[61b3453e-3974-4743-83db-97061cdcb507] [Java AsyncTask #2] DEBUG asynchronous call ApiResponse:ApiResponse(data=null, sign=null, updateMetadataTimestamp=0, updateConfigureTimestamp=0, code=034, desc=接口平台网关未发现) 
+2019-08-22 20:49:19,955 sessionId[61b3453e-3974-4743-83db-97061cdcb507] [Java AsyncTask #2] DEBUG asynchronous execute remote service response 'ApiResponse(data=null, sign=null, updateMetadataTimestamp=0, updateConfigureTimestamp=0, code=034, desc=接口平台网关未发现)'
+2019-08-22 20:49:19,957 sessionId[61b3453e-3974-4743-83db-97061cdcb507] [Java AsyncTask #2] DEBUG asynchronous call result , code:'034' desc:'接口平台网关未发现' 
+2019-08-22 20:49:19,958 sessionId[61b3453e-3974-4743-83db-97061cdcb507] [Java AsyncTask #2] DEBUG call publishService.fetchPublish happens error!  034:接口平台网关未发现 cause :远程服务调用失败 
+2019-08-22 20:49:20,003 sessionId[61b3453e-3974-4743-83db-97061cdcb507] [main] ERROR 034:接口平台网关未发现

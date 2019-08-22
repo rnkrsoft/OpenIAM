@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.rnkrsoft.opensource.iam.jdbc.dao.AuthorityDAO" >
+    <resultMap id="BaseResultMap" type="com.rnkrsoft.opensource.iam.jdbc.entity.AuthorityEntity">
+        <!-- 权限主键 -->
+        <id column="AUTHORITY_ID" property="authorityId" jdbcType="INTEGER" />
+        <!-- 操作主键 -->
+        <result column="RESOURCE_TYPE" property="resourceType" jdbcType="INTEGER" />
+        <result column="RESOURCE_ID" property="resourceId" jdbcType="INTEGER" />
+        <!-- 创建日期 -->
+        <result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" />
+        <!-- 更新日期 -->
+        <result column="LAST_UPDATE_DATE" property="lastUpdateDate" jdbcType="TIMESTAMP" />
+    </resultMap>
+    <resultMap id="fetchAuthorityByAppResultMap" type="com.rnkrsoft.opensource.iam.jdbc.bo.FetchAuthorityByAppBO">
+        <result column="APP_ID" property="appId" jdbcType="INTEGER" />
+        <result column="APP_CODE" property="appCode" jdbcType="VARCHAR" />
+        <result column="APP_TITLE" property="appTitle" jdbcType="VARCHAR" />
+        <result column="PRODUCT_ID" property="productId" jdbcType="INTEGER" />
+        <result column="PRODUCT_CODE" property="productCode" jdbcType="VARCHAR" />
+        <result column="PRODUCT_TITLE" property="productTitle" jdbcType="VARCHAR" />
+        <result column="ACTION_ID" property="actionId" jdbcType="INTEGER" />
+        <result column="ACTION_CODE" property="actionCode" jdbcType="VARCHAR" />
+        <result column="ACTION_TITLE" property="actionTitle" jdbcType="VARCHAR" />
+        <result column="SUB_ACTION_ID" property="subActionId" jdbcType="INTEGER" />
+        <result column="SUB_ACTION_CODE" property="subActionCode" jdbcType="VARCHAR" />
+        <result column="SUB_ACTION_TITLE" property="subActionTitle" jdbcType="VARCHAR" />
+    </resultMap>
+    <resultMap id="fetchAuthorityByAppAndUserResultMap" type="com.rnkrsoft.opensource.iam.jdbc.bo.FetchAuthorityByAppAndUserBO">
+        <result column="APP_ID" property="appId" jdbcType="INTEGER" />
+        <result column="APP_CODE" property="appCode" jdbcType="VARCHAR" />
+        <result column="APP_TITLE" property="appTitle" jdbcType="VARCHAR" />
+        <result column="PRODUCT_ID" property="productId" jdbcType="INTEGER" />
+        <result column="PRODUCT_CODE" property="productCode" jdbcType="VARCHAR" />
+        <result column="PRODUCT_TITLE" property="productTitle" jdbcType="VARCHAR" />
+        <result column="ACTION_ID" property="actionId" jdbcType="INTEGER" />
+        <result column="ACTION_CODE" property="actionCode" jdbcType="VARCHAR" />
+        <result column="ACTION_TITLE" property="actionTitle" jdbcType="VARCHAR" />
+        <result column="SUB_ACTION_ID" property="subActionId" jdbcType="INTEGER" />
+        <result column="SUB_ACTION_CODE" property="subActionCode" jdbcType="VARCHAR" />
+        <result column="SUB_ACTION_TITLE" property="subActionTitle" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <resultMap id="queryAuthorityResultMap" type="com.rnkrsoft.opensource.iam.jdbc.bo.QueryAuthorityBO">
+        <result column="AUTHORITY_ID" property="authorityId" jdbcType="INTEGER" />
+        <result column="RESOURCE_TYPE" property="resourceType" jdbcType="VARCHAR" />
+        <result column="RESOURCE_ID" property="resourceId" jdbcType="INTEGER" />
+        <result column="RESOURCE_CODE" property="resourceCode" jdbcType="VARCHAR" />
+        <result column="RESOURCE_NAME" property="resourceName" jdbcType="VARCHAR" />
+    </resultMap>
+    <sql id="Base_Column_List" >
+        AUTHORITY_ID, SUB_ACTION_ID, CREATE_DATE, LAST_UPDATE_DATE
+    </sql>
+
+    <select id="fetchAuthorityByApp" resultMap="fetchAuthorityByAppResultMap">
+        SELECT
+          T1.APP_ID,
+          T1.APP_CODE,
+          T1.APP_TITLE,
+          T2.PRODUCT_ID,
+          T2.PRODUCT_CODE,
+          T2.PRODUCT_TITLE,
+          T3.ACTION_ID,
+          T3.ACTION_CODE,
+          T3.ACTION_TITLE,
+          T4.SUB_ACTION_ID,
+          T4.SUB_ACTION_CODE,
+          T4.SUB_ACTION_TITLE
+        FROM
+          TB_APPLICATION_INFO T1
+          INNER JOIN TB_PRODUCT_INFO T2
+            ON T1.APP_ID = T2.APP_ID
+          INNER JOIN TB_ACTION_INFO T3
+            ON T2.PRODUCT_ID = T3.PRODUCT_ID
+          INNER JOIN TB_SUB_ACTION_INFO T4
+            ON T3.ACTION_ID = T4.ACTION_ID
+          INNER JOIN TB_AUTHORITY_INFO T5
+            ON T4.SUB_ACTION_ID = T5.RESOURCE_ID AND T5.RESOURCE_TYPE = 1
+        WHERE T1.APP_ID = ${appId}
+        ORDER BY T1.APP_CODE,
+          T2.PRODUCT_CODE,
+          T3.ACTION_CODE,
+          T4.SUB_ACTION_CODE
+    </select>
+    <select id="fetchAuthorityByAppAndUser" resultMap="fetchAuthorityByAppAndUserResultMap">
+        SELECT
+          T1.APP_ID,
+          T1.APP_CODE,
+          T1.APP_TITLE,
+          T2.PRODUCT_ID,
+          T2.PRODUCT_CODE,
+          T2.PRODUCT_TITLE,
+          T3.ACTION_ID,
+          T3.ACTION_CODE,
+          T3.ACTION_TITLE,
+          T4.SUB_ACTION_ID,
+          T4.SUB_ACTION_CODE,
+          T4.SUB_ACTION_TITLE
+        FROM
+          TB_APPLICATION_INFO T1
+          INNER JOIN TB_PRODUCT_INFO T2
+            ON T1.APP_ID = T2.APP_ID
+          INNER JOIN TB_ACTION_INFO T3
+            ON T2.PRODUCT_ID = T3.PRODUCT_ID
+          INNER JOIN TB_SUB_ACTION_INFO T4
+            ON T3.ACTION_ID = T4.ACTION_ID
+          INNER JOIN TB_AUTHORITY_INFO T5
+            ON T4.SUB_ACTION_ID = T5.RESOURCE_ID
+            AND T5.RESOURCE_TYPE = 1
+          INNER JOIN TB_ROLE_AUTHORITY_MAPPING T6
+            ON T5.AUTHORITY_ID = T6.AUTHORITY_ID
+          INNER JOIN TB_ROLE_INFO T7
+            ON T6.ROLE_ID = T7.ROLE_ID
+          INNER JOIN TB_USER_ROLE_MAPPING T8
+            ON T8.ROLE_ID = T7.ROLE_ID
+        WHERE T1.APP_CODE = #{appCode}
+          AND T8.USER_ID = #{userId}
+        ORDER BY T1.APP_CODE,
+          T2.PRODUCT_CODE,
+          T3.ACTION_CODE,
+          T4.SUB_ACTION_CODE
+    </select>
+
+
+    <select id="selectSubActionsByRole" resultType="integer">
+        SELECT
+          T1.SUB_ACTION_ID
+        FROM TB_SUB_ACTION_INFO T1
+        INNER JOIN TB_AUTHORITY_INFO T2 ON T1.SUB_ACTION_ID = T2.RESOURCE_ID  AND T2.RESOURCE_TYPE = 1
+        INNER JOIN TB_ROLE_AUTHORITY_MAPPING T3 ON T2.AUTHORITY_ID = T3.AUTHORITY_ID
+        WHERE T3.ROLE_ID = ${roleId}
+
+    </select>
+
+    <insert id="fixByAppId">
+        INSERT INTO TB_AUTHORITY_INFO(RESOURCE_TYPE, RESOURCE_ID, CREATE_DATE, LAST_UPDATE_DATE)
+        SELECT
+          1, T1.SUB_ACTION_ID, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP()
+        FROM
+          TB_SUB_ACTION_INFO T1
+          INNER JOIN TB_ACTION_INFO T2
+            ON T1.ACTION_ID = T2.ACTION_ID
+          INNER JOIN TB_PRODUCT_INFO T3
+            ON T2.PRODUCT_ID = T3.PRODUCT_ID
+          INNER JOIN TB_APPLICATION_INFO T4
+            ON T3.APP_ID = T4.APP_ID
+        WHERE T4.APP_ID = ${appId}
+    </insert>
+
+    <select id="queryAuthority" resultMap="queryAuthorityResultMap">
+        SELECT
+          authority_id, resource_type, resource_id, resource_code, resource_name
+        FROM
+          (SELECT
+            t.authority_id,
+            t.resource_type,
+            t.resource_id,
+            CASE
+              t.resource_type
+              WHEN 1
+              THEN
+              (SELECT
+                CONCAT(
+                  t4.app_code,
+                  '/',
+                  t3.product_code,
+                  '/',
+                  t2.action_code,
+                  '/',
+                  t1.sub_action_code
+                )
+              FROM
+                tb_sub_action_info t1
+                RIGHT JOIN tb_action_info t2
+                  ON t1.action_id = t2.action_id
+                RIGHT JOIN tb_product_info t3
+                  ON t2.product_id = t3.product_id
+                RIGHT JOIN tb_application_info t4
+                  ON t3.app_id = t4.app_id
+              WHERE sub_action_id = t.resource_id)
+              WHEN 2
+              THEN '不支持的资源类型'
+            END AS resource_code,
+            CASE
+              t.resource_type
+              WHEN 1
+              THEN
+              (SELECT
+                CONCAT(
+                  t4.app_title,
+                  '/',
+                  t3.product_title,
+                  '/',
+                  t2.action_title,
+                  '/',
+                  t1.sub_action_title
+                )
+              FROM
+                tb_sub_action_info t1
+                INNER JOIN tb_action_info t2
+                  ON t1.action_id = t2.action_id
+                INNER JOIN tb_product_info t3
+                  ON t2.product_id = t3.product_id
+                INNER JOIN tb_application_info t4
+                  ON t3.app_id = t4.app_id
+              WHERE sub_action_id = t.resource_id)
+              WHEN 2
+              THEN '不支持的资源类型'
+            END AS resource_name
+          FROM
+            tb_authority_info t) t0
+        <where>
+            <if test="params.resourceType != null">
+                AND t0.resource_type = ${params.resourceType}
+            </if>
+            <if test="params.resourceCode != null">
+                AND t0.resource_code like concat('%', #{params.resourceCode}, '%')
+            </if>
+            <if test="params.resourceName != null">
+                AND t0.resource_name like concat('%', #{params.resourceName}, '%')
+            </if>
+        </where>
+    </select>
+</mapper>

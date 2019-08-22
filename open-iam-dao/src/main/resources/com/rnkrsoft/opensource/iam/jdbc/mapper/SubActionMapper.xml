@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.rnkrsoft.opensource.iam.jdbc.dao.SubActionDAO" >
+    <resultMap id="BaseResultMap" type="com.rnkrsoft.opensource.iam.jdbc.entity.SubActionEntity">
+        <!-- 子功能主键 -->
+        <id column="SUB_ACTION_ID" property="subActionId" jdbcType="INTEGER" />
+        <!-- 子功能代码 -->
+        <result column="SUB_ACTION_CODE" property="subActionCode" jdbcType="VARCHAR" />
+        <!-- 子功能标题 -->
+        <result column="SUB_ACTION_TITLE" property="subActionTitle" jdbcType="VARCHAR" />
+        <!-- 功能编号 -->
+        <result column="ACTION_ID" property="actionId" jdbcType="VARCHAR" />
+        <!-- 子功能状态 0:禁用  1:启用   -->
+        <result column="SUB_ACTION_STATUS" property="subActionStatus" jdbcType="INTEGER" />
+        <!-- 创建日期 -->
+        <result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" />
+        <!-- 更新日期 -->
+        <result column="LAST_UPDATE_DATE" property="lastUpdateDate" jdbcType="TIMESTAMP" />
+    </resultMap>
+    <resultMap id="querySubActionResultMap" type="com.rnkrsoft.opensource.iam.jdbc.bo.QuerySubActionBO">
+        <!-- 子功能主键 -->
+        <id column="SUB_ACTION_ID" property="subActionId" jdbcType="INTEGER" />
+        <!-- 子功能代码 -->
+        <result column="SUB_ACTION_CODE" property="subActionCode" jdbcType="VARCHAR" />
+        <!-- 子功能标题 -->
+        <result column="SUB_ACTION_TITLE" property="subActionTitle" jdbcType="VARCHAR" />
+        <!-- 功能编号 -->
+        <result column="ACTION_TITLE" property="actionTitle" jdbcType="VARCHAR" />
+        <result column="PRODUCT_TITLE" property="productTitle" jdbcType="VARCHAR" />
+        <result column="APP_TITLE" property="appTitle" jdbcType="VARCHAR" />
+        <!-- 子功能状态 0:禁用  1:启用   -->
+        <result column="SUB_ACTION_STATUS" property="subActionStatus" jdbcType="INTEGER" />
+        <!-- 创建日期 -->
+        <result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" />
+        <!-- 更新日期 -->
+        <result column="LAST_UPDATE_DATE" property="lastUpdateDate" jdbcType="TIMESTAMP" />
+    </resultMap>
+    <sql id="Base_Column_List" >
+        SUB_ACTION_ID, SUB_ACTION_CODE, SUB_ACTION_TITLE, ACTION_ID, SUB_ACTION_STATUS, CREATE_DATE, LAST_UPDATE_DATE
+    </sql>
+
+    <select id="querySubAction" resultMap="querySubActionResultMap">
+        SELECT
+        T4.APP_TITLE, T3.PRODUCT_TITLE, T2.ACTION_TITLE, T1.SUB_ACTION_ID, T1.SUB_ACTION_CODE, T1.SUB_ACTION_TITLE, T1.ACTION_ID, T1.SUB_ACTION_STATUS, T1.CREATE_DATE, T1.LAST_UPDATE_DATE
+        FROM TB_SUB_ACTION_INFO T1
+        INNER JOIN TB_ACTION_INFO T2 ON T1.ACTION_ID = T2.ACTION_ID
+        INNER JOIN TB_PRODUCT_INFO T3 ON T2.PRODUCT_ID = T3.PRODUCT_ID
+        INNER JOIN TB_APPLICATION_INFO T4 ON T3.APP_ID = T4.APP_ID
+        <where>
+            <if test="params.appId != null">
+                AND T4.APP_ID = #{params.appId}
+            </if>
+            <if test="params.productId != null">
+                AND T3.PRODUCT_ID = #{params.productId}
+            </if>
+            <if test="params.actionId != null">
+                AND T2.ACTION_ID = #{params.actionId}
+            </if>
+            <if test="params.subActionCode != null">
+                AND T1.SUB_ACTION_CODE = #{params.subActionCode}
+            </if>
+            <if test="params.subActionStatus != null">
+                AND T1.SUB_ACTION_STATUS = ${params.subActionStatus}
+            </if>
+        </where>
+    </select>
+</mapper>

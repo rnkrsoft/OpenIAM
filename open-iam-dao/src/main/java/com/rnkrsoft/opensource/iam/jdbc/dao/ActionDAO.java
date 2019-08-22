@@ -1,0 +1,16 @@
+package com.rnkrsoft.opensource.iam.jdbc.dao;
+
+import com.rnkrsoft.framework.orm.Pagination;
+import com.rnkrsoft.framework.orm.jdbc.JdbcMapper;
+import com.rnkrsoft.opensource.iam.jdbc.bo.QueryActionBO;
+import com.rnkrsoft.opensource.iam.jdbc.entity.ActionEntity;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
+
+/**
+ * Created by rnkrsoft.com on 2018/10/23.
+ */
+public interface ActionDAO extends JdbcMapper<ActionEntity, String> {
+    Pagination<QueryActionBO> queryAction(Pagination<QueryActionBO> pagination);
+}

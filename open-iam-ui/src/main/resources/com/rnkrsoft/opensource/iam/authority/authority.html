@@ -1,0 +1,489 @@
+<!-- Bootstrap -->
+<link href="/themes/layui/vendors/bootstrap/css/bootstrap.css" rel="stylesheet">
+<!-- Font Awesome -->
+<link href="/themes/layui/vendors/font-awesome/css/font-awesome.css" rel="stylesheet">
+<!-- NProgress -->
+<link href="/themes/layui/vendors/nprogress/nprogress.css" rel="stylesheet">
+
+<!-- layui Theme Style -->
+<!--<link rel="stylesheet" type="text/css" href="/themes/layui/css/layui.css" />-->
+
+<!-- select3 -->
+<link rel="stylesheet" type="text/css" href="/themes/layui/vendors/select3/select3.css" />
+<link rel="stylesheet" type="text/css" href="/themes/layui/css/skeleton4j-icon.css" />
+<!-- Custom Theme Style -->
+<link href="/themes/layui/css/custom.css" rel="stylesheet">
+<link href="/themes/layui/css/default.css" rel="stylesheet" />
+<link href="/iam/css/theme.css" rel="stylesheet" />
+
+<script src="/iam/vendors/vue/vue.js"></script>
+<script src="/iam/vendors/vue/vue-resource.js"></script>
+<body class="nav-md default-theme" style="overflow: hidden;">
+<div class="iam-loading">
+    <div class="loader">Loading...</div>
+
+</div>
+<!-- 递归引用的模板 -->
+<template id="one-select" style="display: none;">
+    <ul>
+        <li>
+            <div class="flex-box">
+                <!--<span style="display: none;">{{item}}</span>
+                <span style="display: none;">{{key}}</span>-->
+                <div v-on:click="nodeClick(tree, index)" v-bind:class="[!tree.nodes || (tree.nodes && tree.nodes.length>0 && !tree.nodes[0].nodes)? 'tree-select-none' : !tree.selected? 'tree-select-add' : 'tree-select-decr', 'tree-select', 'inline-block']"></div>
+                <div v-on:click="nodeAllClick(tree, index)" v-bind:class="[!tree.checkAll? 'tree-select-null' : (tree.checkAll == 'half' ? 'tree-select-half' : 'tree-select-full'), 'tree-select', 'inline-block']"></div>
+                <!--{{tree.checkAll}}--{{!tree.checkAll}}-->
+                <div v-if="!tree.nodes || (tree.nodes && tree.nodes.length>0 && !tree.nodes[0].nodes)" @click="setChildData(tree)" class="inline-block flex-1" :class="tree.active">{{ tree.text }}</div>
+                <div v-else @click="setChildData(tree)" class="inline-block">{{ tree.text }}</div>
+
+                <!--<div v-on:click="nodeAllClick(tree, index)" v-bind:class="[!tree.nodes? 'tree-select-none' : !tree.selected? 'tree-select-add' : 'tree-select-decr', 'tree-select', 'inline-block']"></div>-->
+                <span v-if="tree.nodes && tree.nodes.length>0 && tree.nodes[0].nodes  && tree.nodes[0].nodes.length>0" class="btn btn-success" @click="slideAll(tree)">{{tree.showAll?'收起': '展开'}}</span>
+            </div>
+            <div v-show="tree.selected && tree.nodes && tree.nodes.length>0 && tree.nodes[0].nodes  && tree.nodes[0].nodes.length>0" >
+                <one-select v-for="(item, index2) in tree.nodes" :key="index2" v-bind:parent-value="(parentValue?parentValue+'-': '') + (tree.value||'')" v-bind:tree="item" v-bind:index="index2" v-bind:isroot="false" :set-data="setData" :set-auth="setAuth"></one-select>
+            </div>
+        </li>
+    </ul>
+</template>
+<div class="container body" id="app">
+    <div class="main_container">
+
+        <!-- page content -->
+        <div class="right_col" role="main" style="padding: 0;">
+
+            <div class="flex-box col iam-auth-wrap">
+                <div class="flex-box flex-1" style="">
+                    <div class="left" style="border-right: 1px solid #ddd;">
+                        <div class="flex-box col" style="padding: 0;height: 100%;">
+                            <div>
+                                <div class="sa-ele form-group wn-dater" style="display: flex;align-items: center;padding: 10px 0;background: #f1f1f1;margin-bottom: 0;">
+                                    <label style="color: #f00;cursor: pointer;" id="sysInfo">选择应用: </label>
+                                    <input type='text' class="form-control wn-select3" name="roleId" readonly="readonly" id="appId" link="/ajax?product=iam&action=roleAuthorityManagePage&subAction=fetchApp" />
+                                </div>
+                                <div class="sa-ele form-group wn-dater" style="display: flex;align-items: center;padding: 10px 0;background: #f1f1f1;margin-bottom: 0;">
+                                    <label style="color: #f00;cursor: pointer;" id="useInfo">选择角色: </label>
+                                    <input type='text' class="form-control wn-select3" name="roleId" readonly="readonly" id="roleId" link="/ajax?product=iam&action=roleAuthorityManagePage&subAction=fetchRole" />
+                                </div>
+                            </div>
+                            <div class="flex-1 iam-auth-left zx_rel">
+                                <div class="zx_abs full scorll">
+                                    <one-select v-for="(item, index) in tree" :key="index" v-bind:isroot="true" v-bind:parent-value="tree.value||''" v-bind:tree="item" v-bind:index="index" v-bind:set-data="setData" :set-auth="setAuth" style="padding-left: 0;"></one-select>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="right flex-1">
+                        <div class="flex-box col" style="height: 100%;">
+                            <div style="overflow: auto;height: 250px;">
+                                <span class="iam-auth_bar" v-for="(item, index) in selectNode.nodes||[]" @click="setAuth(item)" :key="index" :class="item.selected?'active': ''">{{item.text}}</span>
+
+                            </div>
+                            <div class="flex-1 use-select-none zx_rel" style="overflow: auto;border-top: 10px solid #f1f1f1;padding-top: 10px;">
+                                <!--this.tree.map((k, v)=>{
+                                    let row = {value1: k.value, text1: k.text};
+                                    k.nodes.map((k2, v2)=>{
+                                        row.value2 = k2.value;
+                                        row.text2 = k2.text;
+                                        k2.nodes.map((k3, v3)=>{
+                                            if(k3.selected){
+                                                let rowtemp = Object.assign({}, row);
+                                                rowtemp.item = k3;
+                                                list.push(rowtemp);
+                                            }
+                                        });
+                                    });
+                                });-->
+                                <div class="zx_abs full scorll">
+                                    <h4>该角色所有的权限<span @click="showAllActive" class="pull-right">{{allActive?'收起全部': '展开全部'}}</span></h4>
+                                    <div v-for="(k, v) in tree" :key="'f__'+v" class="iam-auth-selected" :class="!k.active?'active': ''">
+                                        <p @click="setActive(k)">{{k.text}} <i class="fa fa-angle-down pull-right"></i></p>
+                                        <div v-for="(k2, v2) in k.nodes" :key="'s__'+v">
+                                            <p>{{k2.text}}</p>
+                                            <span class="iam-auth_bar active" v-for="(item, index) in k2.nodes||[]" :key="index" v-if="item.selected">{{item.text}}<i @click="removeAuth(item)" class="iconfont icon-roundclosefill"></i></span>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--<span class="iam-auth_bar active" v-for="(item, index) in result||{}" :key="index">{{item.text}}<i @click="removeAuth(item)" class="iconfont icon-roundclosefill"></i></span>-->
+                                <!--{{result}}-->
+                            </div>
+
+                        </div>
+                        <!--{{selectNode}}-->
+                    </div>
+                </div>
+                <div class="row text-right" style="padding: 15px;border-top: 1px solid #ddd;">
+
+                    <button @click="getResult" class="btn btn-primary">保存</button>
+                </div>
+            </div>
+
+
+
+
+            <!-- 内容区end -->
+        </div>
+        <!-- /page content -->
+
+    </div>
+</div>
+<script>
+    // 初始数据
+    //			var treeDataJSON = document.getElementById("treeDataJSON").value;
+    //			var treeData = JSON.parse(treeDataJSON);
+    Vue.component('one-select', {
+        name: 'one-select',
+        template: '#one-select',
+        props: {'tree': Object, 'isroot': Boolean, 'index': Number|String, 'parentValue': String,
+            setData: {
+                type: Function,
+                default: undefined,
+                require: false
+            },
+            setAuth: {
+                type: Function,
+                default: undefined,
+                require: false
+            }
+        },
+        created: function() {
+            var realTree = Object.assign({}, this.tree);
+            delete realTree.selected;
+            this.tree.parentValue = this.parentValue;
+            if(Object.keys(realTree).length === 0) { // 判断最低级，再刷新父级
+                this.refreshAllParentNodes(this.$parent);
+            }
+
+        },
+        methods: {
+            setChildData: function(node) {
+                if(!node.nodes || node.nodes.length==0 || !node.nodes[0].nodes || node.nodes[0].nodes.length==0){
+                    this.$set(node, 'active', node.active?'': 'active');
+                    this.setData(node, this.parentValue);
+
+                }
+            },
+            nodeClick: function(node, index) {
+                if(node.selected) {
+                    this.$set(node, 'selected', null);
+                } else {
+                    this.$set(node, 'selected', 'full');
+                }
+                this.$nextTick(()=>{
+                    this.refreshAllParentNodes(this.$parent);
+                this.refreshAllSonNodes(this, node.checkAll);
+
+            })
+            },
+            slideAll: function(node) {
+                if(node.showAll) {
+                    this.$set(node, 'selected', null);
+                    this.$set(node, 'showAll', null);
+                } else {
+                    this.$set(node, 'selected', 'full');
+                    this.$set(node, 'showAll', 'all');
+                }
+                /*
+                this.$nextTick(()=>{
+                    this.$children.map(item=>{
+                        item.tree.showAll = !node.showAll;
+                        item.slideAll(item.tree);
+                    })
+                })*/
+            },
+            nodeAllClick: function(node, index) {
+                var status = null;
+                /*
+                if(!(node.checkAll === 'full' || node.checkAll === 'half')) {
+                    status = 'full';
+                }
+                this.$set(node, 'checkAll', status);*/
+                if(node.checkAll === 'full' || node.checkAll === 'half') {
+                    this.$set(node, 'checkAll', null);
+                } else {
+                    this.$set(node, 'checkAll', 'full');
+                    status = 'full';
+                }
+                this.refreshChildCheck(node, status);
+//						this.refreshAllParentNodes(self.$parent);
+                this.refreshAllParentNodes(this.$parent);
+                this.refreshAllSonNodes(this, node.checkAll);
+                this.$nextTick(function () {
+                    debugger;
+                    console.log(node.checkAll);
+                });
+            },
+            refreshChildCheck: function(node, status) {
+                node.nodes && node.nodes.map((item, key) => {
+
+                    if(Number.isInteger(item.selected) && !status && (!item.nodes || item.nodes.length==0)) {
+                    this.setAuth(item);
+                }
+                if(!Number.isInteger(item.selected) && status == 'full' && (!item.nodes || item.nodes.length==0)) {
+                    this.setAuth(item);
+                }
+            });
+                this.$children.map(item=>{
+                    item.refreshChildCheck(item.tree, status);
+            })
+            },
+            refreshCheck: function() {
+                this.refreshAllParentNodes(this.$parent);
+                this.refreshAllSonNodes(this, this.checkAll);
+                this.$children.map(item=>{
+                    item.refreshCheck();
+            })
+            },
+            refreshAllSonNodes: function(node, status) {
+                if(node instanceof Vue && node.$children.length) {
+                    for(index in node.$children) {
+                        this.$set(node.$children[index].tree, 'checkAll', status);
+                        // 递归计算子级
+                        this.refreshAllSonNodes(node.$children[index], status);
+                    }
+                }
+//						else if(node instanceof Vue){
+//							this.$set(node.tree, 'checkAll', status);
+//						}
+            },
+            refreshAllParentNodes: function(node) {
+                if(node instanceof Vue) {
+                    var status = null;
+                    var nullCount = 0;
+                    var halfCount = 0;
+                    var fullCount = 0;
+                    for(index in node.$children) {
+                        if(typeof node.$children[index].tree.checkAll === 'undefined') {
+                            nullCount++;
+                        } else if(node.$children[index].tree.checkAll === null) {
+                            nullCount++;
+                        } else if(node.$children[index].tree.checkAll === 'half') {
+                            halfCount++;
+                        } else if(node.$children[index].tree.checkAll === 'full') {
+                            fullCount++;
+                        }
+                    }
+//							if(node.$children.length>0){
+                    if(fullCount === node.$children.length) {
+                        status = 'full';
+                    } else if(nullCount === node.$children.length) {
+                        status = null;
+                    } else {
+                        status = 'half';
+                    }
+                    this.$set(node.tree, 'checkAll', status);
+                    // 递归计算父级
+//							}
+                    this.refreshAllParentNodes(node.$parent);
+//							else {
+//								status = node.tree.checkAll?'': 'full';
+//								this.$set(node.tree, 'checkAll', status);
+//							}
+
+                }
+            },
+            log: function(o) {
+                console.log(o);
+            }
+        }
+    });
+    var loading = {};
+    loading.show = function () {
+        document.querySelector(".iam-loading").style.display='flex';
+    }
+    loading.hide = function () {
+        document.querySelector(".iam-loading").style.display='none';
+    }
+    var vm = new Vue({
+        el: '#app',
+        created() {
+            this.$nextTick(function () {
+                loading.hide();
+            });
+        },
+        methods: {
+            getData: function() {
+                if(!this.appId){
+             //       layer.msg('请选择应用')
+                    return;
+                }
+                if(!this.rowId){
+             //       layer.msg('请选择角色')
+                    return;
+                }
+
+                var self = this;
+                loading.show();
+                var req = {'roleId':this.rowId, 'appId': this.appId};
+                var data = {'product':'iam','action':'roleAuthorityManagePage','subAction':'fetchAuthorityByRole','data':JSON.stringify(req)};
+                this.$http.get('/ajax',{params:data}).then(function(res){
+                    var res = res.body.data;
+                    if(res && res.rspCode == '0000') {
+                        if(res.nodes && res.nodes.length>0){
+                            function changeAll (nodes) {
+                                for(var d in nodes){
+                                    if(nodes[d].nodes && nodes[d].nodes.length>0 && nodes[d].selected){
+//		                    					nodes[d].checkAll = "full";
+                                        Vue.set(nodes[d], 'checkAll', "full");
+                                        changeAll(nodes[d].nodes);
+                                    }
+                                }
+                            }
+                            self.tree = res.nodes[0].nodes;
+                            changeAll (self.tree)
+                            self.$nextTick(function () {
+                                loading.hide();
+                            });
+                        }else{
+                            loading.hide();
+                            self.tree = [];
+                        }
+
+                    }else{
+                        loading.hide();
+                        layer.msg(res?res.rspDesc||'系统错误': '系统错误');
+                    }
+                }, function(){
+                    loading.hide();
+                    console.log('请求失败处理');
+                });
+            },
+            // 返回最终数据
+            getResult: function() {
+                let list = [];
+                this.tree.map((k, v)=>{
+                    let row = {product: k.value, text1: k.text};
+                k.nodes.map((k2, v2)=>{
+                    row.action = k2.value;
+                    row.text2 = k2.text;
+                    k2.nodes.map((k3, v3)=>{
+                            if(k3.selected){
+                            let rowtemp = Object.assign({}, row);
+                            rowtemp.subActionId = k3.value;
+                            list.push(rowtemp);
+                        }
+                    });
+                });
+            });
+                /*Object.keys(this.result).map((item) => {
+                    let temp = Object.assign({}, this.result[item]), action = temp.parentValue?temp.parentValue.split('-'): ['', ''];
+                    temp.product = action[0]
+                    temp.action = action[1]
+                    temp.subAction = temp.value
+                    list.push(temp)
+                });*/
+                console.log(JSON.stringify(list));
+                //数据提交
+                this.$http.post('/ajax',{
+                    'product':'iam',
+                    'action':'roleAuthorityManagePage',
+                    'subAction':'batchUpdateByRole',
+                    'data':JSON.stringify({'roleId':this.rowId,'data':JSON.stringify(list),'appId':this.appId})
+            },{emulateJSON: true}).then(function(res){
+        document.querySelector(".iam-loading").style.display='none'
+        var res = res.body.data;
+        if(res && res.rspCode == '0000') {
+            layer.msg('保存成功')
+        }else{
+            layer.msg(res?res.rspDesc||'系统错误': '系统错误');
+        }
+    }, function(err){
+        document.querySelector(".iam-loading").style.display='none'
+        layer.msg('网络异常')
+    });
+
+
+    },
+    setActive: function (item) {
+        this.$set(item, 'active', !item.active);
+    },
+    showAllActive: function (item) {
+        this.allActive = !this.allActive;
+        this.tree.map((k, v)=>{
+            this.$set(k, 'active', this.allActive);
+    })
+    },
+    setData: function(node, parentValue) {
+        //删除上次选择的节点
+        this.selectNode.active = '';
+        //缓存选中的节点
+        this.selectNode = node;
+//						this.parentValue = parentValue;
+    },
+    removeAuth: function(item) {
+        Vue.delete(this.result, item.parentValue+'-'+item.value);
+        this.$set(item, 'selected', '');
+    },
+    setAuth: function(item) {
+//						console.log(JSON.stringify(item))
+        if(!Number.isInteger(item.selected)) {
+            this.$set(item, 'selected', 1);
+            this.$set(this.result, item.parentValue+'-'+item.value, item);
+//							this.result['sel'+item.value] = item;
+        } else {
+            this.removeAuth(item);
+        }
+        //判断是否选中
+        /*var count = 0;
+        this.selectNode.auths.map(item => {
+            if(Number.isInteger(item.selected)){
+                count++;
+            }
+        });
+        if(count == this.selectNode.auths.length){
+            this.selectNode.checkAll = 'full';
+        }else if(count==0){
+            this.selectNode.checkAll = '';
+        }else{
+            this.selectNode.checkAll = 'half';
+        }*/
+        //检查所有节点，选中情况
+        /*this.$children.map(item=>{
+            item.refreshCheck();
+        })*/
+    }
+    },
+    data: {
+        selectNode: '',
+        lastNode: '',
+        parentValue: '',
+        result: {},
+        tree: [],
+        allActive: false
+    }
+});
+</script>
+</body>
+<script src="/iam/vendors/polyfill.js"></script>
+
+<!-- jQuery -->
+<script src="/javax/web/skeleton4j/vendors/jquery/jquery.js"></script>
+<!-- Bootstrap -->
+<script src="/themes/layui/vendors/bootstrap/js/bootstrap.js"></script>
+<!-- NProgress -->
+<script src="/themes/layui/vendors/nprogress/nprogress.js"></script>
+<!-- jQuery custom content scroller -->
+<script src="/themes/layui/vendors/malihu-custom-scrollbar-plugin/jquery-mCustomScrollbar.js"></script>
+<!-- msg alert confirm -->
+<!--<script src="/javax/web/skeleton4j/vendors/layui/layui.js" type="text/javascript" charset="utf-8"></script>-->
+<!--<script src="/themes/layui/framework/layerCommon.js" type="text/javascript" charset="utf-8"></script>-->
+<script src="/themes/layui/vendors/select3/select3.js" type="text/javascript" charset="utf-8"></script>
+<script src="/themes/layui/framework/inputTree.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+    $(function () {
+        $("#roleId").createInputTree(false, '', '', '', function (value) {
+            vm.rowId = value;
+            console.log(value);
+            vm.getData(value);
+        }, '', false);
+
+        $("#appId").createInputTree(false, '', '', '', function (value) {
+            vm.appId = value;
+            vm.getData();
+        }, '', false);
+        $("#useInfo").click(function () {
+            layer.alert('1、选择角色，即可查看该角色下的所有权限<span style="color: red;">【右下方】</span>；<br/>2、点击<span style="color: red;">【左边栏目】</span>的模块，即可在<span style="color: red;">【右上方】</span>查看该模块的权限情况；<br/>3、<span style="color: red;">【右上方】</span>权限按钮，即可编辑该用户是否勾选该权限；')
+        });
+    });
+</script>

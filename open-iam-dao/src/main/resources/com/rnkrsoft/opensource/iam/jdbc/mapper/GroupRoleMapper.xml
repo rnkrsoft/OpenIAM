@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.rnkrsoft.opensource.iam.jdbc.dao.GroupRoleDAO" >
+    <resultMap id="BaseResultMap" type="com.rnkrsoft.opensource.iam.jdbc.entity.GroupRoleEntity">
+        <!-- 物理主键 -->
+        <id column="MAPPING_ID" property="mappingId" jdbcType="INTEGER" />
+        <!-- 用户组主键 -->
+        <result column="GROUP_ID" property="groupId" jdbcType="INTEGER" />
+        <!-- 角色主键 -->
+        <result column="ROLE_ID" property="roleId" jdbcType="INTEGER" />
+        <!-- 创建日期 -->
+        <result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" />
+        <!-- 更新日期 -->
+        <result column="LAST_UPDATE_DATE" property="lastUpdateDate" jdbcType="TIMESTAMP" />
+    </resultMap>
+    <sql id="Base_Column_List" >
+        MAPPING_ID, GROUP_ID, ROLE_ID, CREATE_DATE, LAST_UPDATE_DATE
+    </sql>
+</mapper>

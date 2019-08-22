@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.rnkrsoft.opensource.iam.jdbc.dao.ActionDAO" >
+    <resultMap id="BaseResultMap" type="com.rnkrsoft.opensource.iam.jdbc.entity.ActionEntity">
+        <!-- 功能主键 -->
+        <id column="ACTION_ID" property="actionId" jdbcType="INTEGER" />
+        <!-- 功能代码 -->
+        <result column="ACTION_CODE" property="actionCode" jdbcType="VARCHAR" />
+        <!-- 功能标题 -->
+        <result column="ACTION_TITLE" property="actionTitle" jdbcType="VARCHAR" />
+        <!-- 应用编号 -->
+        <result column="PRODUCT_ID" property="productId" jdbcType="VARCHAR" />
+        <!-- 状态 0:禁用  1:启用   -->
+        <result column="ACTION_STATUS" property="actionStatus" jdbcType="INTEGER" />
+        <!-- 创建日期 -->
+        <result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" />
+        <!-- 更新日期 -->
+        <result column="LAST_UPDATE_DATE" property="lastUpdateDate" jdbcType="TIMESTAMP" />
+    </resultMap>
+    <resultMap id="queryActionResultMap" type="com.rnkrsoft.opensource.iam.jdbc.bo.QueryActionBO">
+        <!-- 功能主键 -->
+        <id column="ACTION_ID" property="actionId" jdbcType="INTEGER" />
+        <!-- 功能代码 -->
+        <result column="ACTION_CODE" property="actionCode" jdbcType="VARCHAR" />
+        <!-- 应用编号 -->
+        <result column="APP_TITLE" property="applicationTitle" jdbcType="VARCHAR" />
+        <!-- 应用编号 -->
+        <result column="PRODUCT_TITLE" property="productTitle" jdbcType="VARCHAR" />
+        <!-- 功能标题 -->
+        <result column="ACTION_TITLE" property="actionTitle" jdbcType="VARCHAR" />
+        <!-- 状态 0:禁用  1:启用   -->
+        <result column="ACTION_STATUS" property="actionStatus" jdbcType="INTEGER" />
+        <!-- 创建日期 -->
+        <result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" />
+        <!-- 更新日期 -->
+        <result column="LAST_UPDATE_DATE" property="lastUpdateDate" jdbcType="TIMESTAMP" />
+    </resultMap>
+    <sql id="Base_Column_List" >
+        ACTION_ID, ACTION_CODE, ACTION_TITLE, PRODUCT_ID, ACTION_STATUS, CREATE_DATE, LAST_UPDATE_DATE
+    </sql>
+
+
+    <select id="queryAction" resultMap="queryActionResultMap">
+        SELECT
+        T3.APP_TITLE, T2.PRODUCT_TITLE, T1.ACTION_ID, T1.ACTION_CODE, T1.ACTION_TITLE, T1.PRODUCT_ID, T1.ACTION_STATUS, T1.CREATE_DATE, T1.LAST_UPDATE_DATE
+        FROM TB_ACTION_INFO T1
+        INNER JOIN TB_PRODUCT_INFO T2 ON T1.PRODUCT_ID = T2.PRODUCT_ID
+        INNER JOIN TB_APPLICATION_INFO T3 ON T2.APP_ID=T3.APP_ID
+        <where>
+            <if test="params.appId != null">
+                AND T3.APP_ID = #{params.appId}
+            </if>
+            <if test="params.productId != null">
+                AND T2.PRODUCT_ID = #{params.productId}
+            </if>
+            <if test="params.actionCode != null">
+                AND T1.ACTION_CODE = #{params.actionCode}
+            </if>
+            <if test="params.actionName != null">
+                AND T1.ACTION_NAME LIKE concat('%',#{params.actionName}, '%')
+            </if>
+            <if test="params.actionStatus != null">
+                AND T1.ACTION_STATUS = ${params.actionStatus}
+            </if>
+        </where>
+    </select>
+</mapper>

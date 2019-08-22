@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.rnkrsoft.opensource.iam.jdbc.dao.RoleAuthorityDAO" >
+    <resultMap id="BaseResultMap" type="com.rnkrsoft.opensource.iam.jdbc.entity.RoleAuthorityEntity">
+        <!-- 物理主键 -->
+        <id column="MAPPING_ID" property="mappingId" jdbcType="INTEGER" />
+        <!-- 角色主键 -->
+        <result column="ROLE_ID" property="roleId" jdbcType="INTEGER" />
+        <!-- 权限主键 -->
+        <result column="AUTHORITY_ID" property="authorityId" jdbcType="VARCHAR" />
+        <!-- 创建日期 -->
+        <result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" />
+        <!-- 更新日期 -->
+        <result column="LAST_UPDATE_DATE" property="lastUpdateDate" jdbcType="TIMESTAMP" />
+    </resultMap>
+    <sql id="Base_Column_List" >
+        MAPPING_ID, ROLE_ID, AUTHORITY_ID, CREATE_DATE, LAST_UPDATE_DATE
+    </sql>
+
+    <insert id="insertAuthorities">
+        insert into tb_role_authority_mapping (role_id, authority_id, create_date, last_update_date)
+        select ${roleId}, authority_id,CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP()
+        from tb_authority_info
+        where resource_type = 1
+        AND resource_id in
+        <foreach collection="subActions" open="(" close=")" separator="," item="item" >${item}</foreach>
+    </insert>
+</mapper>

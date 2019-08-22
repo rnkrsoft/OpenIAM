@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.rnkrsoft.opensource.iam.jdbc.dao.RoleDAO" >
+    <resultMap id="BaseResultMap" type="com.rnkrsoft.opensource.iam.jdbc.entity.RoleEntity">
+        <!-- 角色主键 -->
+        <id column="ROLE_ID" property="roleId" jdbcType="INTEGER" />
+        <!-- 角色名 -->
+        <result column="ROLE_NAME" property="roleName" jdbcType="VARCHAR" />
+        <!-- 角色状态 0:禁用  1:启用   -->
+        <result column="ROLE_STATUS" property="roleStatus" jdbcType="INTEGER" />
+        <!-- 创建日期 -->
+        <result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" />
+        <!-- 更新日期 -->
+        <result column="LAST_UPDATE_DATE" property="lastUpdateDate" jdbcType="TIMESTAMP" />
+    </resultMap>
+    <sql id="Base_Column_List" >
+        ROLE_ID, ROLE_NAME, ROLE_STATUS, CREATE_DATE, LAST_UPDATE_DATE
+    </sql>
+
+    <select id="selectByUserId" resultMap="BaseResultMap">
+        SELECT
+        T1.ROLE_ID, T1.ROLE_NAME, T1.ROLE_STATUS, T1.CREATE_DATE, T1.LAST_UPDATE_DATE
+        FROM TB_ROLE_INFO T1 INNER JOIN TB_USER_ROLE_MAPPING T2 ON T1.ROLE_ID = T2.ROLE_ID
+        WHERE T2.USER_ID = #{userId}
+    </select>
+</mapper>

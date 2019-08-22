@@ -1,0 +1,94 @@
+.iam{
+	margin: 0 auto;
+	width: 330px;
+	min-height: 340px;
+	z-index: 999;
+}
+
+.iam-title {
+	padding: 0px 10px;
+	color: #fff;
+	font-weight: bold;
+	font-size: 18px;
+	border-radius: 27px;
+	background: -webkit-linear-gradient(left, #0088ff, #0088ffad);
+	background: -moz-linear-gradient(left, #0088ff, #0088ffad);
+	background: linear-gradient(to right, #0088ff, #0088ffad);
+}
+.iam-info{
+    margin-right: 37px;
+    padding: 36px;
+    box-sizing: border-box;
+    width: 691px;
+    background: rgba(255, 255, 255, .09);
+    border-radius: 6px;
+    color: #fff;
+    font-size: 14px;
+}
+.iam-main {
+	display: flex;
+	flex-direction: row;
+	width: 360px;
+}
+
+.iam-container {
+	margin: 0 auto;
+	width: 330px;
+	min-height: 340px;
+	padding: 35px 25px 0;
+	background-color: #fff;
+}
+
+.iam-view .iconfont {
+	display: block;
+	cursor: pointer;
+	top: 0;
+	right: 0;
+	font-size: 40px;
+	color: #0088ff;
+	float: right;
+}
+
+.iam-container .mobileNo {
+	width: 80%;
+	height: 24px;
+	padding: 11px;
+	line-height: 20px;
+	border: 1px solid #AAAAAABF;
+	border-radius: 4px;
+	margin-bottom: 15px;
+}
+
+.iam-container .smsCode {
+	width: 40%;
+	height: 24px;
+	padding: 11px;
+	line-height: 20px;
+	border: 1px solid #AAAAAABF;
+	border-radius: 4px;
+	margin-bottom: 15px;
+}
+
+.iam-container .send-btn {
+	width: 40%;
+	height: 24px;
+	right: 0;
+	top: 13px;
+	border: none;
+	background: none;
+	padding: 0 20px;
+	border-left: 1px solid #eee;
+	color: #0088FF;
+	cursor: pointer;
+}
+
+.iam-container .login-btn {
+	width: 90%;
+	height: 40px;
+	margin-top: 15px;
+	padding: 6px 0;
+	border: 0 none;
+	color: #fff;
+	background-color: #4d90fe;
+	cursor: pointer;
+}

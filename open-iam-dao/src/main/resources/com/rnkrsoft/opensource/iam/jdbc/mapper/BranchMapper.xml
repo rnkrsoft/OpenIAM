@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.rnkrsoft.opensource.iam.jdbc.dao.BranchDAO" >
+    <resultMap id="BaseResultMap" type="com.rnkrsoft.opensource.iam.jdbc.entity.BranchEntity">
+        <!-- 分支机构主键 -->
+        <id column="BRANCH_ID" property="branchId" jdbcType="INTEGER" />
+        <!-- 分支机构名称 -->
+        <result column="BRANCH_NAME" property="branchName" jdbcType="VARCHAR" />
+        <!-- 城市主键 -->
+        <result column="CITY_ID" property="cityId" jdbcType="INTEGER" />
+        <!-- 分支机构状态 0:禁用  1:启用   -->
+        <result column="BRANCH_STATUS" property="branchStatus" jdbcType="INTEGER" />
+        <!-- 创建日期 -->
+        <result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" />
+        <!-- 更新日期 -->
+        <result column="LAST_UPDATE_DATE" property="lastUpdateDate" jdbcType="TIMESTAMP" />
+    </resultMap>
+    <resultMap id="queryBranchResultMap" type="com.rnkrsoft.opensource.iam.jdbc.bo.QueryBranchBO">
+        <!-- 分支机构主键 -->
+        <id column="BRANCH_ID" property="branchId" jdbcType="INTEGER" />
+        <!-- 分支机构名称 -->
+        <result column="BRANCH_NAME" property="branchName" jdbcType="VARCHAR" />
+        <!-- 城市主键 -->
+        <result column="CITY_NAME" property="cityName" jdbcType="INTEGER" />
+        <!-- 分支机构状态 0:禁用  1:启用   -->
+        <result column="BRANCH_STATUS" property="branchStatus" jdbcType="INTEGER" />
+    </resultMap>
+    <sql id="Base_Column_List" >
+        BRANCH_ID, BRANCH_NAME, CITY_ID, BRANCH_STATUS, CREATE_DATE, LAST_UPDATE_DATE
+    </sql>
+
+    <select id="queryBranch" resultMap="queryBranchResultMap">
+        SELECT T1.BRANCH_ID, T1.BRANCH_NAME, T2.CITY_NAME, T1.BRANCH_STATUS
+        FROM TB_BRANCH_INFO T1 INNER JOIN TB_CITY_INFO T2 ON T1.CITY_ID = T2.CITY_ID
+        <where>
+            <if test="params.cityId != null">
+                AND T2.CITY_ID = #{params.cityId}
+            </if>
+            <if test="params.branchStatus != null">
+                AND T1.BRANCH_STATUS = #{params.branchStatus}
+            </if>
+        </where>
+    </select>
+</mapper>

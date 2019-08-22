@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+       http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <!-- 提供方应用信息，用于计算依赖关系 -->
+    <dubbo:application name="open-iam-gateway"/>
+
+    <dubbo:registry address="${zookeeper.address}"/>
+
+    <dubbo:consumer check="false"></dubbo:consumer>
+
+    <dubbo:reference version="1.0.0" id="iamService" interface="com.rnkrsoft.opensource.iam.services.IAMService"/>
+</beans>

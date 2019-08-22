@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.rnkrsoft.opensource.iam.jdbc.dao.ProductDAO" >
+    <resultMap id="BaseResultMap" type="com.rnkrsoft.opensource.iam.jdbc.entity.ProductEntity">
+        <!-- 产品主键 -->
+        <id column="PRODUCT_ID" property="productId" jdbcType="VARCHAR" />
+        <!-- 产品代码 -->
+        <result column="PRODUCT_CODE" property="productCode" jdbcType="VARCHAR" />
+        <!-- 产品标题 -->
+        <result column="PRODUCT_TITLE" property="productTitle" jdbcType="VARCHAR" />
+        <!-- 应用编码 -->
+        <result column="APP_ID" property="appId" jdbcType="VARCHAR" />
+        <!-- 产品状态 0:禁用  1:启用   -->
+        <result column="PRODUCT_STATUS" property="productStatus" jdbcType="INTEGER" />
+        <!-- 创建日期 -->
+        <result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" />
+        <!-- 更新日期 -->
+        <result column="LAST_UPDATE_DATE" property="lastUpdateDate" jdbcType="TIMESTAMP" />
+    </resultMap>
+
+    <resultMap id="queryProductResultMap" type="com.rnkrsoft.opensource.iam.jdbc.bo.QueryProductBO">
+        <!-- 产品主键 -->
+        <id column="PRODUCT_ID" property="productId" jdbcType="VARCHAR" />
+        <!-- 产品代码 -->
+        <result column="PRODUCT_CODE" property="productCode" jdbcType="VARCHAR" />
+        <!-- 产品标题 -->
+        <result column="PRODUCT_TITLE" property="productTitle" jdbcType="VARCHAR" />
+        <!-- 应用编码 -->
+        <result column="APP_TITLE" property="appTitle" jdbcType="VARCHAR" />
+        <!-- 产品状态 0:禁用  1:启用   -->
+        <result column="PRODUCT_STATUS" property="productStatus" jdbcType="INTEGER" />
+        <!-- 创建日期 -->
+        <result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" />
+        <!-- 更新日期 -->
+        <result column="LAST_UPDATE_DATE" property="lastUpdateDate" jdbcType="TIMESTAMP" />
+    </resultMap>
+    <sql id="Base_Column_List" >
+        PRODUCT_ID, PRODUCT_CODE, PRODUCT_TITLE, APP_ID, PRODUCT_STATUS, CREATE_DATE, LAST_UPDATE_DATE
+    </sql>
+
+    <select id="queryProduct" resultMap="queryProductResultMap">
+        SELECT
+        T2.APP_TITLE, T1.PRODUCT_ID, T1.PRODUCT_CODE, T1.PRODUCT_TITLE, T1.APP_ID, T1.PRODUCT_STATUS, T1.CREATE_DATE, T1.LAST_UPDATE_DATE
+        FROM TB_PRODUCT_INFO T1 INNER  JOIN TB_APPLICATION_INFO T2 ON T1.APP_ID = T2.APP_ID
+        <where>
+            <if test="params.appCode != null">
+              AND T1.APP_CODE = ${params.appCode}
+            </if>
+            <if test="params.productCode != null">
+              AND T1.PRODUCT_CODE = #{params.productCode}
+            </if>
+            <if test="params.productTitle != null">
+              AND T1.PRODUCT_TITLE LIKE concat('%', #{params.productTitle}, '%')
+            </if>
+            <if test="params.productStatus != null">
+              AND T1.PRODUCT_STATUS = ${params.productStatus}
+            </if>
+        </where>
+    </select>
+</mapper>

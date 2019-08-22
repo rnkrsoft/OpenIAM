@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <import resource="classpath*:applicationContext-dataSource.xml"/>
+
+    <bean class="com.rnkrsoft.framework.sequence.SpringContextHelper"/>
+
+    <bean id="ormScannerConfigurer" class="com.rnkrsoft.framework.orm.spring.OrmScannerConfigurer">
+        <property name="ormConfig">
+            <bean class="com.rnkrsoft.framework.orm.config.ReleaseOrmConfig">
+                <!--SQL关键字大小写模式，UPDATE，FORM，WHERE等-->
+                <property name="keywordMode" value="lowerCase"/>
+                <!--SQL大小写模式 表名，字段名等-->
+                <property name="sqlMode" value="lowerCase"/>
+                <!--序号服务与表映射关系-->
+                <property name="sequenceMappings">
+                    <map>
+                        <!--表名和序号服务规则-->
+                        <entry key="TB_DEMO" value="com.rnkrsoft.framework.sequence.jnjvm.InjvmSequenceService"/>
+                    </map>
+                </property>
+                <!--DAO包路径数组-->
+                <property name="daoPackages">
+                    <array>
+                        <value>com.rnkrsoft.platform.jdbc.dao</value>
+                    </array>
+                </property>
+                <!--MAPPER文件路径数组-->
+                <property name="mapperLocations">
+                    <array>
+                        <value>classpath*:com/rnkrsoft/platform/jdbc/mapper/*.xml</value>
+                    </array>
+                </property>
+                <!--全局配置-->
+                <property name="global">
+                    <bean class="com.rnkrsoft.framework.orm.config.ItemConfig">
+                        <property name="schemaMode" value="customize"/>
+                        <property name="prefixMode" value="entity"/>
+                        <property name="suffixMode" value="entity"/>
+                        <property name="schema" value=""/>
+                        <property name="prefix" value=""/>
+                        <property name="suffix" value=""/>
+                        <!--是否自动创建表-->
+                        <property name="autoCreateTable" value="false"/>
+                    </bean>
+                </property>
+                <!--配置信息-->
+                <property name="configs">
+                    <map>
+                    </map>
+                </property>
+            </bean>
+        </property>
+    </bean>
+    <bean id="sequenceServiceConfigure" class="com.rnkrsoft.framework.sequence.spring.SpringSequenceServiceConfigure">
+        <property name="mappings">
+            <props>
+                <prop key="DEMO_INF">com.rnkrsoft.framework.sequence.jnjvm.InjvmSequenceService</prop>
+            </props>
+        </property>
+        <property name="parameters">
+            <props/>
+        </property>
+    </bean>
+    <bean id="ormSessionFactoryBean" class="com.rnkrsoft.framework.orm.spring.OrmSessionFactoryBean">
+        <!--数据源-->
+        <property name="dataSource" ref="defaultDataSource"/>
+    </bean>
+</beans>

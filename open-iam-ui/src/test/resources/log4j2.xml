@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration status="WARN">
+    <Properties>
+        <Property name="FILE_SIZE">50M</Property>
+        <Property name="LOG_PATTERN">%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n</Property>
+        <Property name="rollover_strategy_max">10</Property>
+        <property name="LOGGER">Console</property>
+    </Properties>
+    <appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+        </Console>
+    </appenders>
+
+    <loggers>
+        <AsyncRoot level="debug">
+            <appender-ref ref="${LOGGER}"/>
+        </AsyncRoot>
+        <!--
+            additivity开启的话，由于这个logger也是满足root的，所以会被打印两遍。
+            -->
+        <logger name="org.springframework" level="debug" additivity="false">
+            <appender-ref ref="${LOGGER}"/>
+        </logger>
+        <logger name="org.apache.velocity" level="error" additivity="false">
+            <appender-ref ref="${LOGGER}"/>
+        </logger>
+        <logger name="log4jdbc" level="info" additivity="false">
+            <appender-ref ref="${LOGGER}"/>
+        </logger>
+        <logger name="jdbc.audit" level="off" additivity="false">
+            <appender-ref ref="${LOGGER}"/>
+        </logger>
+        <logger name="jdbc.sqlonly" level="off" additivity="false">
+            <appender-ref ref="${LOGGER}"/>
+        </logger>
+        <logger name="jdbc.sqltiming" level="debug" additivity="false">
+            <appender-ref ref="${LOGGER}"/>
+        </logger>
+        <logger name="jdbc.connection" level="off" additivity="false">
+            <appender-ref ref="${LOGGER}"/>
+        </logger>
+        <logger name="jdbc.resultset" level="off" additivity="false">
+            <appender-ref ref="${LOGGER}"/>
+        </logger>
+        <logger name="jdbc.resultsettable" level="debug" additivity="false">
+            <appender-ref ref="${LOGGER}"/>
+        </logger>
+    </loggers>
+</configuration>

@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.rnkrsoft.opensource.iam.jdbc.dao.UserDAO" >
+    <resultMap id="BaseResultMap" type="com.rnkrsoft.opensource.iam.jdbc.entity.UserEntity">
+        <!-- 用户号 -->
+        <id column="USER_ID" property="userId" jdbcType="VARCHAR" />
+        <!-- 用户名 -->
+        <result column="USER_NAME" property="userName" jdbcType="VARCHAR" />
+        <!-- 昵称 -->
+        <result column="NICK_NAME" property="nickName" jdbcType="VARCHAR" />
+        <!-- 用户头像 -->
+        <result column="USER_AVATAR" property="userAvatar" jdbcType="VARCHAR" />
+        <!-- 手机号 -->
+        <result column="MOBILE_NO" property="mobileNo" jdbcType="VARCHAR" />
+        <!-- 是否首次登录 1:是  2:否   -->
+        <result column="FIRST_LOGIN" property="firstLogin" jdbcType="INTEGER" />
+        <!-- 上一次登录的部门 -->
+        <result column="LATEST_DEPARTMENT_ID" property="latestDepartmentId" jdbcType="INTEGER" />
+        <!-- 状态 1:正常  2:初始化  3:注销  4:冻结   -->
+        <result column="USER_STATUS" property="userStatus" jdbcType="INTEGER" />
+        <!-- 创建日期 -->
+        <result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" />
+        <!-- 更新日期 -->
+        <result column="LAST_UPDATE_DATE" property="lastUpdateDate" jdbcType="TIMESTAMP" />
+    </resultMap>
+    <resultMap id="queryUserResultMap" type="com.rnkrsoft.opensource.iam.jdbc.bo.QueryUserBO">
+        <!-- 用户号 -->
+        <id column="USER_ID" property="userId" jdbcType="VARCHAR" />
+        <!-- 用户名 -->
+        <result column="USER_NAME" property="userName" jdbcType="VARCHAR" />
+        <!-- 昵称 -->
+        <result column="NICK_NAME" property="nickName" jdbcType="VARCHAR" />
+        <!-- 用户头像 -->
+        <result column="USER_AVATAR" property="userAvatar" jdbcType="VARCHAR" />
+        <!-- 手机号 -->
+        <result column="MOBILE_NO" property="mobileNo" jdbcType="VARCHAR" />
+        <!-- 是否首次登录 1:是  2:否   -->
+        <result column="FIRST_LOGIN" property="firstLogin" jdbcType="INTEGER" />
+        <!-- 状态 1:正常  2:初始化  3:注销  4:冻结   -->
+        <result column="USER_STATUS" property="userStatus" jdbcType="INTEGER" />
+        <result column="ROLES" property="roles" jdbcType="VARCHAR" />
+        <result column="BRANCHES" property="branches" jdbcType="VARCHAR" />
+        <result column="DEPARTMENTS" property="departments" jdbcType="VARCHAR" />
+        <result column="JOBS" property="jobs" jdbcType="VARCHAR" />
+        <result column="CITIES" property="cities" jdbcType="VARCHAR" />
+        <!-- 创建日期 -->
+        <result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" />
+        <!-- 更新日期 -->
+        <result column="LAST_UPDATE_DATE" property="lastUpdateDate" jdbcType="TIMESTAMP" />
+    </resultMap>
+    <sql id="Base_Column_List" >
+        USER_ID, USER_NAME, NICK_NAME, USER_AVATAR, MOBILE_NO, FIRST_LOGIN, LATEST_BRANCH_ID, USER_STATUS, CREATE_DATE, LAST_UPDATE_DATE
+    </sql>
+
+    <select id="queryUser" resultMap="queryUserResultMap">
+		SELECT
+		  t.user_id,
+		  t.user_name,
+		  t.nick_name,
+		  t.user_avatar,
+		  t.mobile_no,
+		  t.first_login,
+		  t.user_status,
+		  (SELECT
+		    GROUP_CONCAT(t10.role_name)
+		  FROM
+		    tb_role_info t10
+		    INNER JOIN tb_user_role_mapping t11
+		      ON t10.role_id = t11.role_id
+		  WHERE t11.user_id = t.user_id) AS roles,
+		  (SELECT
+		    GROUP_CONCAT(t31.branch_name)
+		  FROM
+		    tb_department_info t30
+		    INNER JOIN tb_branch_info t31
+		      ON t30.branch_id = t31.branch_id
+		    INNER JOIN tb_job_info t32
+		      ON t30.department_id = t32.department_id
+		    INNER JOIN tb_user_job_mapping t33
+		      ON t32.job_id = t33.job_id
+		  WHERE t33.user_id = t.user_id) branches,
+		  (SELECT
+		    GROUP_CONCAT(t30.department_name)
+		  FROM
+		    tb_department_info t30
+		    INNER JOIN tb_job_info t32
+		      ON t30.department_id = t32.department_id
+		    INNER JOIN tb_user_job_mapping t33
+		      ON t32.job_id = t33.job_id
+		  WHERE t33.user_id = t.user_id) departments,
+		  (SELECT
+		    GROUP_CONCAT(t32.job_name)
+		  FROM
+		    tb_job_info t32
+		    INNER JOIN tb_user_job_mapping t33
+		      ON t32.job_id = t33.job_id
+		  WHERE t33.user_id = t.user_id) jobs,
+		  (SELECT
+		    GROUP_CONCAT(t32.city_name)
+		  FROM
+		    tb_department_info t30
+		    INNER JOIN tb_branch_info t31
+		      ON t30.branch_id = t31.branch_id
+		    INNER JOIN tb_city_info t32
+		      ON t32.city_id = t31.city_id
+		    INNER JOIN tb_job_info t33
+		      ON t30.department_id = t33.department_id
+		    INNER JOIN tb_user_job_mapping t34
+		      ON t33.job_id = t34.job_id
+		  WHERE t34.user_id = t.user_id) cities,
+		  t.create_date,
+		  t.last_update_date
+		FROM
+		  tb_user_info t
+        <where>
+            <if test="params.userStatus!=null">
+                AND t.user_status = ${params.userStatus}
+            </if>
+            <if test="params.userName!=null">
+                AND t.user_name like concat('%',#{params.userName},'%')
+            </if>
+            <if test="params.nickName!=null">
+                AND t.nick_name like concat('%',#{params.nickName},'%')
+            </if>
+            <if test="params.mobileNo!=null">
+                AND t.mobile_no like concat('%',#{params.mobileNo},'%')
+            </if>
+        </where>
+        order by t.create_date desc
+    </select>
+</mapper>

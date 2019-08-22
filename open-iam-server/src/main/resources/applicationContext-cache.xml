@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <bean class="com.rnkrsoft.framework.orm.cache.spring.CacheScannerConfigurer">
+        <property name="basePackages">
+            <array>
+                <value>com.rnkrsoft.opensource.iam.cache.dao</value>
+            </array>
+        </property>
+        <property name="host" value="${cache.url}"/>
+        <property name="port" value="${cache.port}"/>
+        <property name="index" value="${cache.index}"/>
+        <property name="password" value="${cache.password}"/>
+    </bean>
+</beans>

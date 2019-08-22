@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.rnkrsoft.opensource.iam.jdbc.dao.CityDAO" >
+    <resultMap id="BaseResultMap" type="com.rnkrsoft.opensource.iam.jdbc.entity.CityEntity">
+        <!-- 城市主键 -->
+        <id column="CITY_ID" property="cityId" jdbcType="INTEGER" />
+        <!-- 城市名称 -->
+        <result column="CITY_NAME" property="cityName" jdbcType="VARCHAR" />
+        <!-- 状态 0:禁用  1:启用   -->
+        <result column="CITY_STATUS" property="cityStatus" jdbcType="INTEGER" />
+        <!-- 创建日期 -->
+        <result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" />
+        <!-- 更新日期 -->
+        <result column="LAST_UPDATE_DATE" property="lastUpdateDate" jdbcType="TIMESTAMP" />
+    </resultMap>
+    <sql id="Base_Column_List" >
+        CITY_ID, CITY_NAME, CITY_STATUS, CREATE_DATE, LAST_UPDATE_DATE
+    </sql>
+
+    <select id="queryCity" resultMap="BaseResultMap">
+        SELECT *
+        FROM TB_CITY_INFO
+        <where>
+            <if test="params.cityName!= null">
+                AND CITY_NAME like concat('%',#{params.cityName}, '%')
+            </if>
+            <if test="params.cityStatus!= null">
+                AND CITY_STATUS = ${params.cityStatus}
+            </if>
+        </where>
+    </select>
+</mapper>

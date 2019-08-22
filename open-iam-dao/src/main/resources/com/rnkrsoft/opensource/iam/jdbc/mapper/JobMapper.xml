@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.rnkrsoft.opensource.iam.jdbc.dao.JobDAO" >
+    <resultMap id="BaseResultMap" type="com.rnkrsoft.opensource.iam.jdbc.entity.JobEntity">
+        <!-- 岗位主键 -->
+        <id column="JOB_ID" property="jobId" jdbcType="INTEGER" />
+        <!-- 岗位名称 -->
+        <result column="JOB_NAME" property="jobName" jdbcType="VARCHAR" />
+        <!-- 岗位状态 0:禁用  1:启用   -->
+        <result column="JOB_STATUS" property="jobStatus" jdbcType="INTEGER" />
+        <!-- 创建日期 -->
+        <result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" />
+        <!-- 更新日期 -->
+        <result column="LAST_UPDATE_DATE" property="lastUpdateDate" jdbcType="TIMESTAMP" />
+    </resultMap>
+
+    <resultMap id="selectJobByUserIdResultMap" type="com.rnkrsoft.opensource.iam.jdbc.bo.SelectJobBO">
+        <!-- 映射主键 -->
+        <id column="MAPPING_ID" property="mappingId" jdbcType="INTEGER" />
+        <!-- 岗位主键 -->
+        <result column="JOB_ID" property="jobId" jdbcType="INTEGER" />
+        <!-- 岗位名称 -->
+        <result column="JOB_NAME" property="jobName" jdbcType="VARCHAR" />
+        <!-- 部门主键 -->
+        <result column="DEPARTMENT_ID" property="departmentId" jdbcType="INTEGER" />
+        <!-- 部门名称 -->
+        <result column="DEPARTMENT_NAME" property="departmentName" jdbcType="VARCHAR" />
+        <result column="BRANCH_ID" property="branchId" jdbcType="INTEGER" />
+        <!-- 分支机构主键 -->
+        <result column="BRANCH_NAME" property="branchName" jdbcType="VARCHAR" />
+        <!-- 分支机构主键 -->
+        <result column="CITY_ID" property="cityId" jdbcType="VARCHAR" />
+        <result column="CITY_NAME" property="cityName" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <resultMap id="queryJobResultMap" type="com.rnkrsoft.opensource.iam.jdbc.bo.QueryJobBO">
+        <!-- 岗位主键 -->
+        <result column="JOB_ID" property="jobId" jdbcType="INTEGER" />
+        <!-- 岗位名称 -->
+        <result column="JOB_NAME" property="jobName" jdbcType="VARCHAR" />
+        <result column="JOB_STATUS" property="jobStatus" jdbcType="INTEGER" />
+        <!-- 部门主键 -->
+        <result column="DEPARTMENT_ID" property="departmentId" jdbcType="INTEGER" />
+        <!-- 部门名称 -->
+        <result column="DEPARTMENT_NAME" property="departmentName" jdbcType="VARCHAR" />
+        <result column="BRANCH_ID" property="branchId" jdbcType="INTEGER" />
+        <!-- 分支机构主键 -->
+        <result column="BRANCH_NAME" property="branchName" jdbcType="VARCHAR" />
+        <!-- 分支机构主键 -->
+        <result column="CITY_ID" property="cityId" jdbcType="VARCHAR" />
+        <result column="CITY_NAME" property="cityName" jdbcType="VARCHAR" />
+    </resultMap>
+    <sql id="Base_Column_List" >
+        JOB_ID, JOB_NAME, JOB_STATUS, CREATE_DATE, LAST_UPDATE_DATE
+    </sql>
+
+    <select id="selectByUserId" resultMap="BaseResultMap">
+        SELECT
+        T1.JOB_ID, T1.JOB_NAME, T1.JOB_STATUS, T1.CREATE_DATE, T1.LAST_UPDATE_DATE
+        FROM TB_JOB_INFO T1 INNER JOIN TB_USER_JOB_MAPPING T2 ON T1.JOB_ID= T2.JOB_ID
+        WHERE T2.USER_ID = #{userId}
+    </select>
+
+
+    <select id="queryJob" resultMap="queryJobResultMap">
+        SELECT
+          t1.job_id,
+          t1.job_name,
+          t1.job_status,
+          t4.city_name,
+          t3.branch_name,
+          t2.department_name
+        FROM
+          tb_job_info t1
+          INNER JOIN tb_department_info t2
+            ON t1.department_id = t2.department_id
+          INNER JOIN tb_branch_info t3
+            ON t2.branch_id = t3.branch_id
+          INNER JOIN tb_city_info t4
+            ON t3.city_id = t4.city_id
+            <where>
+                <if test="params.branchId != null">
+                    AND t3.branch_id = ${params.branchId}
+                </if>
+                <if test="params.jobStatus != null">
+                    AND t1.job_status = ${params.jobStatus}
+                </if>
+            </where>
+    </select>
+
+    <select id="selectJobByUserId" resultMap="selectJobByUserIdResultMap">
+        SELECT
+          T1.MAPPING_ID,
+          T2.JOB_ID,
+          T2.JOB_NAME,
+          T3.DEPARTMENT_ID,
+          T3.DEPARTMENT_NAME,
+          T4.BRANCH_ID,
+          T4.BRANCH_NAME,
+          T5.CITY_ID,
+          T5.CITY_NAME
+        FROM
+          TB_USER_JOB_MAPPING T1
+          INNER JOIN TB_JOB_INFO T2
+            ON T1.JOB_ID = T2.JOB_ID
+          INNER JOIN TB_DEPARTMENT_INFO T3
+            ON T2.DEPARTMENT_ID = T3.DEPARTMENT_ID
+              INNER JOIN tb_branch_info T4
+            ON T3.BRANCH_ID = T4.BRANCH_ID
+             INNER JOIN tb_city_info T5
+            ON T4.city_id = T5.city_id
+            WHERE T1.USER_ID = #{userId}
+    </select>
+</mapper>

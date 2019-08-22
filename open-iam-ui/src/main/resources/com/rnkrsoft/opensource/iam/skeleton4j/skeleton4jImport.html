@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>导入架包文件</title>
+
+</head>
+
+<body>
+    <input type="file" id="file"/>
+    <input id="interfacePackages" name="interfacePackages">
+    <input id="pagePackages" name="pagePackages">
+    <input id="appCode" name="appCode">
+    <input type="button" id="btn" value="提交">
+    <script type="application/javascript" src="/javax/web/skeleton4j/vendors/jquery/jquery.js"></script>
+    <script type="application/javascript">
+        $(document).ready(function(){
+            $("#btn").click(function(){
+                var data = new Object();
+                data["interfacePackages"] = $("#interfacePackages").val();
+                data["pagePackages"] = $("#pagePackages").val();
+                data["appCode"] = $("#appCode").val();
+                var formData = new FormData();
+                formData.append('file', $('#file')[0].files[0]);
+                formData.append('product','iam');
+                formData.append('action','skeleton4jImportPage');
+                formData.append('subAction','generateModule');
+                formData.append('data', JSON.stringify(data));
+                $.ajax({
+                    url: "/upload",
+                    type: 'post',
+                    cache: false,
+                    data: formData,
+                    processData: false,
+                    contentType: false
+                }).done(function(res) {
+                    console.info(res);
+                }).fail(function(res) {
+                    console.info(res);
+                });
+            });
+        });
+    </script>
+</body>

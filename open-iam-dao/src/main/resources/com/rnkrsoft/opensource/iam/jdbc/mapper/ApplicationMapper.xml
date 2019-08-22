@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.rnkrsoft.opensource.iam.jdbc.dao.ApplicationDAO" >
+    <resultMap id="BaseResultMap" type="com.rnkrsoft.opensource.iam.jdbc.entity.ApplicationEntity">
+        <!-- 应用主键 -->
+        <id column="APP_ID" property="appId" jdbcType="INTEGER" />
+        <!-- 应用代码 -->
+        <result column="APP_CODE" property="appCode" jdbcType="VARCHAR" />
+        <!-- 应用标题 -->
+        <result column="APP_TITLE" property="appTitle" jdbcType="VARCHAR" />
+        <!-- 应用链接地址 -->
+        <result column="APP_URL" property="appUrl" jdbcType="VARCHAR" />
+        <!-- 应用图片地址 -->
+        <result column="APP_IMAGE" property="appImage" jdbcType="VARCHAR" />
+        <!-- 状态 0:禁用  1:启用   -->
+        <result column="APP_STATUS" property="appStatus" jdbcType="INTEGER" />
+        <!-- 创建日期 -->
+        <result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" />
+        <!-- 更新日期 -->
+        <result column="LAST_UPDATE_DATE" property="lastUpdateDate" jdbcType="TIMESTAMP" />
+    </resultMap>
+    <sql id="Base_Column_List" >
+        APP_ID, APP_CODE, APP_TITLE, APP_URL, APP_IMAGE, APP_STATUS, CREATE_DATE, LAST_UPDATE_DATE
+    </sql>
+</mapper>
