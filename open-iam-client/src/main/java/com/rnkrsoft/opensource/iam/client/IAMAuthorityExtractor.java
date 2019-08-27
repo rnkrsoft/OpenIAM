@@ -16,6 +16,7 @@ import com.rnkrsoft.opensource.iam.cookie.LoginToken;
 import com.rnkrsoft.opensource.iam.vo.Branch;
 import com.rnkrsoft.opensource.iam.vo.City;
 import com.rnkrsoft.opensource.iam.vo.Department;
+import com.rnkrsoft.reflection4j.extension.Extension;
 import com.rnkrsoft.skeleton4j.authority.DefaultAuthorityContext;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.StringUtils;
@@ -39,6 +40,7 @@ import java.util.List;
  * 提取Cookie中存放的令牌信息
  */
 @Slf4j
+@Extension("iam")
 public class IAMAuthorityExtractor implements javax.web.skeleton4j.authority.AuthorityExtractor {
     ReferenceConfig<IAMService> referenceConfig;
     long lastFetchConfigMs = System.currentTimeMillis();

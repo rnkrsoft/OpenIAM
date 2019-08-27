@@ -35,7 +35,7 @@
         <dependencies>
             <dependency>
                 <groupId>com.rnkrsoft.skeleton4j</groupId>
-                <artifactId>skeleton4j-dependencies</artifactId>
+                <artifactId>skeleton4j-dependencies-community-suits</artifactId>
                 <version>${skeleton4j.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
@@ -46,19 +46,16 @@
         <dependency>
             <groupId>com.rnkrsoft.skeleton4j</groupId>
             <artifactId>skeleton4j-api</artifactId>
-            <version>${skeleton4j.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>com.rnkrsoft.skeleton4j</groupId>
-            <artifactId>skeleton4j-sdk</artifactId>
-            <version>${skeleton4j.version}</version>
+            <artifactId>skeleton4j-sdk-community</artifactId>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>com.rnkrsoft.skeleton4j</groupId>
             <artifactId>skeleton4j-boot</artifactId>
-            <version>${skeleton4j.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>

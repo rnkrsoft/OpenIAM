@@ -18,7 +18,7 @@ import javax.web.skeleton4j.enums.WebGui;
         author = "master",
         apiDocGenerateGui = false,
         resources = {
-                @WebResource("classpath*:com.rnkrsoft.opensource.iam.authority.authority.html")
+                @WebResource("classpath:com.rnkrsoft.opensource.iam.authority.authority.html")
         },
         namespaces = {
                 @WebNamespace(

@@ -7,7 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.web.doc.annotation.ApidocElement;
-import javax.web.doc.enums.ValueDisplayType;
+import javax.web.skeleton4j.enums.ValueDisplayType;
 import java.io.Serializable;
 
 /**

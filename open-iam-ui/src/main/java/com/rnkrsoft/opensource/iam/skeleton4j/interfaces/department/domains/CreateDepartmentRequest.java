@@ -4,10 +4,10 @@ import com.rnkrsoft.opensource.iam.skeleton4j.interfaces.branch.services.BranchS
 import lombok.Data;
 
 import javax.web.doc.annotation.ApidocElement;
-import javax.web.doc.enums.ValueDisplayType;
-import javax.web.doc.enums.WebDisplayType;
-import javax.web.doc.enums.WebLayout;
-import javax.web.doc.enums.WebTriggerEvent;
+import javax.web.skeleton4j.enums.ValueDisplayType;
+import javax.web.skeleton4j.enums.WebDisplayType;
+import javax.web.skeleton4j.enums.WebLayout;
+import javax.web.skeleton4j.enums.WebTriggerEvent;
 import javax.web.skeleton4j.annotation.WebCascadeInterface;
 import javax.web.skeleton4j.annotation.WebResultDisplay;
 import java.io.Serializable;

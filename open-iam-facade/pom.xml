@@ -12,6 +12,10 @@
     <description>身份识别与访问管理服务门面服务</description>
     <dependencies>
         <dependency>
+            <groupId>com.rnkrsoft.skeleton4j</groupId>
+            <artifactId>skeleton4j-api</artifactId>
+        </dependency>
+        <dependency>
             <groupId>com.rnkrsoft.opensource</groupId>
             <artifactId>open-iam-internal-api</artifactId>
             <version>${project.version}</version>

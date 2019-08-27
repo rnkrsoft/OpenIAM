@@ -20,7 +20,7 @@
         <zkclient_version>0.9</zkclient_version>
         <curator_version>2.12.0</curator_version>
         <mybatis.version>3.3.0</mybatis.version>
-        <framework.version>1.0.2</framework.version>
+        <framework.version>1.0.2-SNAPSHOT</framework.version>
         <log4jdbc.version>1.16</log4jdbc.version>
         <h2.version>1.3.172</h2.version>
         <mysql-connector-java.version>5.1.39</mysql-connector-java.version>
@@ -76,7 +76,7 @@
         <dependencies>
             <dependency>
                 <groupId>com.rnkrsoft.skeleton4j</groupId>
-                <artifactId>skeleton4j-dependencies</artifactId>
+                <artifactId>skeleton4j-dependencies-community-suits</artifactId>
                 <version>${skeleton4j.version}</version>
                 <type>pom</type>
                 <scope>import</scope>

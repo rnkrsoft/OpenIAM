@@ -15,7 +15,7 @@ import javax.web.skeleton4j.enums.InterfaceCall;
         pagePackages = {
                 "com.rnkrsoft.opensource.iam.skeleton4j.pages"
         },
-        call = InterfaceCall.SPRING_BEAN
+        call = InterfaceCall.DUBBO
 )
 public interface IAM {
 }

@@ -14,7 +14,7 @@
         <dependencies>
             <dependency>
                 <groupId>com.rnkrsoft.skeleton4j</groupId>
-                <artifactId>skeleton4j-dependencies-suits</artifactId>
+                <artifactId>skeleton4j-dependencies-community-suits</artifactId>
                 <version>1.0.3</version>
                 <type>pom</type>
                 <scope>import</scope>
@@ -38,7 +38,7 @@
         </dependency>
         <dependency>
             <groupId>com.rnkrsoft.skeleton4j</groupId>
-            <artifactId>skeleton4j-ui</artifactId>
+            <artifactId>skeleton4j-ui-community</artifactId>
         </dependency>
         <dependency>
             <groupId>com.rnkrsoft.skeleton4j</groupId>
@@ -50,7 +50,7 @@
         </dependency>
         <dependency>
             <groupId>com.rnkrsoft.skeleton4j</groupId>
-            <artifactId>skeleton4j-sdk</artifactId>
+            <artifactId>skeleton4j-sdk-community</artifactId>
         </dependency>
         <dependency>
             <groupId>com.rnkrsoft.skeleton4j</groupId>
@@ -58,7 +58,7 @@
         </dependency>
         <dependency>
             <groupId>com.rnkrsoft.skeleton4j</groupId>
-            <artifactId>skeleton4j-theme-layui</artifactId>
+            <artifactId>skeleton4j-theme-layui-community</artifactId>
         </dependency>
         <dependency>
             <groupId>com.rnkrsoft.embedded</groupId>

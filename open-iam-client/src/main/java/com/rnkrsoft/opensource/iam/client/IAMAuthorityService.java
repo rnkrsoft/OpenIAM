@@ -9,6 +9,7 @@ import com.rnkrsoft.opensource.iam.IAMConfigKey;
 import com.rnkrsoft.opensource.iam.domains.*;
 import com.rnkrsoft.opensource.iam.enums.YesOrNo;
 import com.rnkrsoft.opensource.iam.services.IAMService;
+import com.rnkrsoft.reflection4j.extension.Extension;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.MDC;
 
@@ -22,6 +23,7 @@ import java.util.*;
  * IAM权限服务
  */
 @Slf4j
+@Extension("iam")
 public class IAMAuthorityService implements javax.web.skeleton4j.authority.AuthorityService {
     ReferenceConfig<IAMService> referenceConfig;
     //全局共享单例，当多个用户在访问时，可能导致发生脏读

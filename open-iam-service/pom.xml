@@ -11,6 +11,10 @@
     <artifactId>open-iam-service</artifactId>
     <dependencies>
         <dependency>
+            <groupId>com.rnkrsoft.skeleton4j</groupId>
+            <artifactId>skeleton4j-ui-community</artifactId>
+        </dependency>
+        <dependency>
             <groupId>com.rnkrsoft.opensource</groupId>
             <artifactId>open-iam-api</artifactId>
             <version>${project.version}</version>

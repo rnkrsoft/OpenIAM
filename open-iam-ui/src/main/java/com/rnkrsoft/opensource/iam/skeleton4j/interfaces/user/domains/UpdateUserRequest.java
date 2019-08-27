@@ -3,7 +3,10 @@ package com.rnkrsoft.opensource.iam.skeleton4j.interfaces.user.domains;
 import lombok.Data;
 
 import javax.web.doc.annotation.ApidocElement;
-import javax.web.doc.enums.ValueDisplayType;
+import javax.web.skeleton4j.enums.ValueDisplayType;
+import javax.web.skeleton4j.enums.WebDisplayType;
+import javax.web.skeleton4j.enums.WebLayout;
+import javax.web.skeleton4j.enums.WebTriggerEvent;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashSet;
