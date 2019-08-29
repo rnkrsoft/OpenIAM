@@ -1,21 +1,11 @@
 <!-- Bootstrap -->
-<link href="/themes/layui/vendors/bootstrap/css/bootstrap.css" rel="stylesheet">
-<!-- Font Awesome -->
-<link href="/themes/layui/vendors/font-awesome/css/font-awesome.css" rel="stylesheet">
-<!-- NProgress -->
-<link href="/themes/layui/vendors/nprogress/nprogress.css" rel="stylesheet">
-
-<!-- layui Theme Style -->
-<!--<link rel="stylesheet" type="text/css" href="/themes/layui/css/layui.css" />-->
-
+<link href="/iam/vendors/bootstrap/css/bootstrap.css" rel="stylesheet">
 <!-- select3 -->
-<link rel="stylesheet" type="text/css" href="/themes/layui/vendors/select3/select3.css" />
-<link rel="stylesheet" type="text/css" href="/themes/layui/css/skeleton4j-icon.css" />
+<link rel="stylesheet" type="text/css" href="/iam/vendors/select4/select4.css" />
 <!-- Custom Theme Style -->
-<link href="/themes/layui/css/custom.css" rel="stylesheet">
-<link href="/themes/layui/css/default.css" rel="stylesheet" />
 <link href="/iam/css/theme.css" rel="stylesheet" />
-
+<link href="/themes/layui-community/css/custom.css" rel="stylesheet">
+<link href="/themes/layui-community/css/default.css" rel="stylesheet" />
 <script src="/iam/vendors/vue/vue.js"></script>
 <script src="/iam/vendors/vue/vue-resource.js"></script>
 <body class="nav-md default-theme" style="overflow: hidden;">
@@ -129,9 +119,6 @@
     </div>
 </div>
 <script>
-    // 初始数据
-    //			var treeDataJSON = document.getElementById("treeDataJSON").value;
-    //			var treeData = JSON.parse(treeDataJSON);
     Vue.component('one-select', {
         name: 'one-select',
         template: '#one-select',
@@ -460,25 +447,20 @@
 <!-- jQuery -->
 <script src="/javax/web/skeleton4j/vendors/jquery/jquery.js"></script>
 <!-- Bootstrap -->
-<script src="/themes/layui/vendors/bootstrap/js/bootstrap.js"></script>
+<script src="/iam/vendors/bootstrap/js/bootstrap.js"></script>
 <!-- NProgress -->
-<script src="/themes/layui/vendors/nprogress/nprogress.js"></script>
-<!-- jQuery custom content scroller -->
-<script src="/themes/layui/vendors/malihu-custom-scrollbar-plugin/jquery-mCustomScrollbar.js"></script>
-<!-- msg alert confirm -->
-<!--<script src="/javax/web/skeleton4j/vendors/layui/layui.js" type="text/javascript" charset="utf-8"></script>-->
-<!--<script src="/themes/layui/framework/layerCommon.js" type="text/javascript" charset="utf-8"></script>-->
-<script src="/themes/layui/vendors/select3/select3.js" type="text/javascript" charset="utf-8"></script>
-<script src="/themes/layui/framework/inputTree.js" type="text/javascript" charset="utf-8"></script>
+<script src="/themes/layui-community/vendors/nprogress/nprogress.js"></script>
+<script src="/iam/vendors/select4/select4.js" type="text/javascript" charset="utf-8"></script>
+<script src="/iam/vendors/select4/select4-tree.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
     $(function () {
-        $("#roleId").createInputTree(false, '', '', '', function (value) {
+        $("#roleId").createSelect4(false, '', '', '', function (value) {
             vm.rowId = value;
             console.log(value);
             vm.getData(value);
         }, '', false);
 
-        $("#appId").createInputTree(false, '', '', '', function (value) {
+        $("#appId").createSelect4(false, '', '', '', function (value) {
             vm.appId = value;
             vm.getData();
         }, '', false);
