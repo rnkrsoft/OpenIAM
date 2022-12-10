@@ -14,7 +14,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <zxing.version>3.0.0</zxing.version>
-        <spring.version>4.3.20.RELEASE</spring.version>
+        <spring.version>6.0.0</spring.version>
         <skeleton4j.version>1.0.3</skeleton4j.version>
         <druid.version>1.1.10</druid.version>
         <zkclient_version>0.9</zkclient_version>
